@@ -7,6 +7,8 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
+  this.route('customer-index');
+  this.route('store-index');
 });
 
 export default Router;
