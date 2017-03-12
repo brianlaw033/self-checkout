@@ -4,7 +4,7 @@ import CryptoJS from 'cryptojs';
 export default Ember.Component.extend({
   login: Ember.inject.service(),
   signUpService: Ember.inject.service(),
-  chosenType: "",
+  chosenType: null,
   actions:{
     submitForm(){
       var username = this.get('username');

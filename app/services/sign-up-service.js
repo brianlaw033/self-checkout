@@ -10,19 +10,23 @@ export default Ember.Service.extend({
       equalTo:  username
     }).then(function(users){
               if(users.get('firstObject') == null){
-                     if( password===again ){
-                       var params = {
-                         username: username,
-                         password: password,
-                         type: type
+                     if( password === again ){
+                       if(type != null){
+                         var params = {
+                           username: username,
+                           password: password,
+                           type: type
+                         };
+                         var newUser = self.get('store').createRecord('user', params);
+                         newUser.save();
+                         self.get("routing").transitionTo("index");
+                       }else{
+                         alert('Please select which type you are.');
                        };
-                       var newUser = self.get('store').createRecord('user', params);
-                       newUser.save();
-                       self.get("routing").transitionTo("index");
                      } else {
                        alert('The 2 Password you entered does not match')
                      }
-              } else {
+              }else {
                 alert('Username Registered, Choose another name.')
               }
     })
