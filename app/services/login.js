@@ -13,7 +13,7 @@ export default Ember.Service.extend({
   checkType(username, password){
     const hash = CryptoJS.SHA256(password).toString();
     var self = this;
-    var userInfo = this.get('store').query('user',{
+    return this.get('store').query('user',{
       orderBy: 'username',
       equalTo:  username
     }
@@ -21,7 +21,7 @@ export default Ember.Service.extend({
     if(users.get('firstObject') != null){
            var temp = users.get('firstObject');
            var tempPw = temp.get('password');
-           if(tempPw == hash){
+           if(tempPw === hash){
              self.set('person', temp);
              self.set('not', false);
              self.set('logedin', true);
@@ -34,7 +34,7 @@ export default Ember.Service.extend({
              }
            }else{
              alert('Wrong password or username');
-           };
+           }
      } else{
        alert('Wrong password or username');
      }

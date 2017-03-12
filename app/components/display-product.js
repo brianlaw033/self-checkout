@@ -6,7 +6,6 @@ export default Ember.Component.extend({
   actions:{
     getBarcode(){
         var tempNum = this.get('barcode');
-        var self = this;
         this.get('findProduct').getProduct(tempNum);
         // this.toggleProperty('isShowingModal');
     },

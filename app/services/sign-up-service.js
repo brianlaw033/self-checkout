@@ -5,7 +5,7 @@ export default Ember.Service.extend({
   routing: Ember.inject.service('-routing'),
   checkUsername(username, password, again, type){
     var self = this;
-    var userInfo = this.get('store').query('user',{
+    return this.get('store').query('user',{
       orderBy: 'username',
       equalTo:  username
     }).then(function(users){
@@ -22,13 +22,13 @@ export default Ember.Service.extend({
                          self.get("routing").transitionTo("index");
                        }else{
                          alert('Please select which type you are.');
-                       };
+                       }
                      } else {
-                       alert('The 2 Password you entered does not match')
+                       alert('The 2 Password you entered does not match');
                      }
               }else {
-                alert('Username Registered, Choose another name.')
+                alert('Username Registered, Choose another name.');
               }
-    })
+    });
   }
 });

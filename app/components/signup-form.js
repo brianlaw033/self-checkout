@@ -14,7 +14,7 @@ export default Ember.Component.extend({
       return this.get('signUpService').checkUsername(username, password, again, type);
     },
     selectType(type){
-      this.set('chosenType', type)
+      this.set('chosenType', type);
     }
   }
 });

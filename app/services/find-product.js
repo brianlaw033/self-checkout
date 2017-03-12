@@ -15,7 +15,7 @@ export default Ember.Service.extend({
         var temp = products.get('firstObject');
         self.set('display', temp);
         self.set('isShowingModal', true);
-      })
+      });
   },
   toggleModal() {
     this.set('isShowingModal',false);
