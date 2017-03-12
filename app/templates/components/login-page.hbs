@@ -1,0 +1,7 @@
+  <div class='text-center'>
+    {{input value=username id='username' placeholder='Username'}}
+    {{input type='password' value=password id='password' placeholder='Password'}}
+    <button {{action "userLogin"}} class='btn'>Log in Now</button>
+    {{#link-to 'sign-up'}}<button class='btn'>Sign up</button>{{/link-to}}
+    <h3></h3>
+  </div>

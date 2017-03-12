@@ -1,13 +1,19 @@
+{{#if login.customer}}
 <div class='container'>
   <form>
      <p>{{input type="number" value=barcode id='barcode'}}</p><br />
     <button class='btn' {{action 'getBarcode'}}>Get Product</button>
   </form>
-
-  <div class='container text-center col-xs-4 product-list thumbnail'>
-    {{findProduct.display.name}}
-    <img src='{{findProduct.display.image}}' />
-    $ {{findProduct.display.price}}
-    <button class='btn-success'>Add to Cart</button>
-  </div>
+  {{#if findProduct.isShowingModal}}
+    {{#modal-dialog close="toggleModal" targetAttachment="center" translucentOverlay=true}}
+      <div class='text-center'>
+        {{findProduct.display.name}}<br />
+        {{findProduct.display.brand}}<br />
+        <img class='display' src="{{findProduct.display.image}}"/><br />
+        ${{findProduct.display.price}}<br />
+        <button class='btn-success'>Add to Cart</button>
+      </div>
+    {{/modal-dialog}}
+  {{/if}}
 </div>
+{{/if}}
