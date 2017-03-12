@@ -1,9 +1,6 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  model() {
-    return this.store.findAll('product');
-},
 
   actions: {
     update(product, params) {
@@ -15,9 +12,10 @@ export default Ember.Component.extend({
       });
     },
 
-    // saveProduct(params) {
-    //   var newProduct = this.store.createRecord('product', params);
-    //   newProduct.save();
-    // },
+    destroyProduct(product) {
+        if (confirm('Are you sure you want to delete this product record?')) {
+          return product.destroyRecord('product');
+      }
+    }
   }
 });
