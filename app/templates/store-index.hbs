@@ -3,6 +3,8 @@
 
 {{store-navbar}}
 
-{{#each model.products as |product|}}
+{{#each model.shop.products as |product|}}
   {{product-tile product=product}}
 {{/each}}
+
+{{new-product shop=shop saveProduct="saveProduct"}}
