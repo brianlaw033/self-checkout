@@ -1,0 +1,10 @@
+<div class="cart col-xs-2">
+  <h2>Your Cart</h2>
+  {{#each shoppingCart.items as |item|}}
+    {{shopping-cart-tile item=item}}
+  {{/each}}
+  <p>Total : {{shoppingCart.totalprice}}</p>
+  {{#if shoppingCart.canpay}}
+    {{#link-to 'payment'}}<button class="btn" {{action 'addsoldItems' shoppingCart.items}}>Proceed to payment</button>{{/link-to}}
+  {{/if}}
+</div>

@@ -1,19 +1,19 @@
 { "products": [{
-    "barcode": "0000000000000",
+    "barcode": 0,
     "brand": "Gillette",
     "price": 15.5,
     "image": "https://ll-us-i5.wal.co/asr/e8bbaab7-506f-4ad9-9f74-9e4ddf44d0ea_1.e98d8988b3f8c21e918c54a6f5deeac2.jpeg-c0062e301c7ae6e2179715ec4a79711da26d1c1a-optim-2000x2000.jpg",
     "name": "Shaving Cream 1",
     "description": "Best shaving cream on the market."
   }, {
-    "barcode": "0000000000000",
+    "barcode": 1,
     "brand": "Gillette",
     "price": 15.5,
     "image": "http://target.scene7.com/is/image/Target/13356699?wid=450&hei=450&fmt=pjpeg",
     "name": "Shaving Cream 2",
     "description": "Best shaving cream on the market."
   }, {
-    "barcode": "0000000000000",
+    "barcode": 2,
     "brand": "Gillette",
     "price": 15.5,
     "image": "http://target.scene7.com/is/image/Target/13356700?wid=450&hei=450&fmt=pjpeg",
