@@ -4,5 +4,5 @@ export default DS.Model.extend({
   username: DS.attr(),
   password: DS.attr(),
   type: DS.attr(),
-  storedetail: DS.belongsTo('user', {async: true})
+  shop: DS.belongsTo('shop', {async: true})
 });
