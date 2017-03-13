@@ -1,14 +1,27 @@
-<form>
-  <div class='form-group'>
-    {{input value=username id='username' placeholder='User Name'}}<br />
-    {{input type='password' value=password id='password' placeholder='Enter your Password'}}<br />
-    {{input type='password' value=again id='again' placeholder='Enter your Password Again'}}<br />
-    <select onchange={{action "selectType" value="target.value"}}>
-      <option></option>
-      {{#each login.userType as |type|}}
-        <option value={{type}}>{{type}}</option>
-      {{/each}}
-    </select>
-  </div>
-  <button class='btn' {{action 'submitForm'}}>Submit</button>
-</form>
+{{#if signUpService.b4Submit}}
+  <form>
+    <div class='form-group'>
+      {{input value=username id='username' placeholder='User Name'}}<br />
+      {{input type='password' value=password id='password' placeholder='Enter your Password'}}<br />
+      {{input type='password' value=again id='again' placeholder='Enter your Password Again'}}<br />
+      <select onchange={{action "selectType" value="target.value"}}>
+        <option></option>
+        {{#each login.userType as |type|}}
+          <option value={{type}}>{{type}}</option>
+        {{/each}}
+      </select>
+    </div>
+    <button class='btn' {{action 'submitForm'}}>Next</button>
+  </form>
+{{/if}}
+
+
+    {{#if signUpService.seller}}
+      <form>
+        <h3>Enter the detail of your store:</h3>
+        {{input value=shopname id='shopname' placeholder='Store Name'}}<br />
+        {{input value=location id='location' placeholder='Store Location'}}<br />
+        {{input value=photo id='photo' placeholder='Upload a photo for your shop'}}<br />
+        <button class='btn' {{action 'submitShop'}}>Next</button>
+      </form>
+    {{/if}}

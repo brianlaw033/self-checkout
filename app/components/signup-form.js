@@ -15,6 +15,17 @@ export default Ember.Component.extend({
     },
     selectType(type){
       this.set('chosenType', type);
+      if (this.get('chosenType') == 'seller'){
+        this.set('seller', true);
+      } else{
+        this.set('seller', false);
+      }
+    },
+    submitShop(){
+        var shopname = this.get('shopname');
+        var location = this.get('location');
+        var photo = this.get('photo');
+        return this.get('signUpService').addShop(shopname, location, photo);
     }
   }
 });

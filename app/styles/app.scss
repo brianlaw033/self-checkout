@@ -1,5 +1,14 @@
 @import "ember-modal-dialog/ember-modal-structure";
 @import "ember-modal-dialog/ember-modal-appearance";
+.btn{
+  color: white;
+  background-color: #173568;
+}
+
+.login{
+  padding-top: 20%;
+  font-size: 30px;
+}
 
 .display{
   width: 300px;

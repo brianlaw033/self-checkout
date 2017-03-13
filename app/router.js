@@ -8,7 +8,7 @@ const Router = Ember.Router.extend({
 
 Router.map(function() {
   this.route('customer-index');
-  this.route('store-index');
+  this.route('store-index', {path: '/store-index/:user_id'});
   this.route('sign-up');
   this.route('sales');
   this.route('payment');

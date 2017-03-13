@@ -7,5 +7,6 @@ export default DS.Model.extend({
   image: DS.attr(),
   name: DS.attr(),
   description: DS.attr(),
+  shop: DS.belongsTo('shop', {async: true}),
   quantity_selected: DS.attr()
 });
