@@ -10,6 +10,7 @@ export default Ember.Service.extend({
    seller: false,
    customer: false,
    userType: ['seller', 'customer'],
+
   checkType(username, password){
     const hash = CryptoJS.SHA256(password).toString();
     var self = this;
@@ -26,7 +27,9 @@ export default Ember.Service.extend({
              self.set('not', false);
              self.set('logedin', true);
              if (temp.get('type') === 'seller'){
-                self.get("routing").transitionTo("store-index");
+               debugger;
+                self.get("routing").transitionTo("store-index", [temp.get('id')]);
+                debugger;
                 self.set('seller', true);
              }else if (temp.get('type') === 'customer'){
                 self.get("routing").transitionTo("customer-index");
