@@ -119,6 +119,11 @@
   float:right;
 }
 
+#shop-image {
+  max-height: 400px;
+  width: auto;
+}
+
 
 @import "ember-bootstrap/bootstrap";
 

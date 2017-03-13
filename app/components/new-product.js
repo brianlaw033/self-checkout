@@ -7,7 +7,6 @@ export default Ember.Component.extend({
       this.set('addNewProduct', true);
     },
     saveProduct () {
-      debugger;
       var params = {
         barcode: parseInt(this.get('barcode')),
         brand: this.get('brand'),

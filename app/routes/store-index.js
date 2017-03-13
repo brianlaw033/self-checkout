@@ -9,8 +9,8 @@ export default Ember.Route.extend({
       var newProduct = this.store.createRecord('product', params);
       var shop = params.shop;
       shop.get('products').addObject(newProduct);
-      newProduct.save().then(function (shop) {
-        return shop.save();
+      newProduct.save().then(function () {
+        return shop.get('_internalModel').save();
       });
     },
   }
