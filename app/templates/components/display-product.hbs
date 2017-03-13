@@ -11,7 +11,7 @@
         {{findProduct.display.brand}}<br />
         <img class='display' src="{{findProduct.display.image}}"/><br />
         ${{findProduct.display.price}}<br />
-        <button class='btn-success'>Add to Cart</button>
+        <button class='btn-success'{{action 'addToCart' findProduct.display}}>Add to Cart</button>
       </div>
     {{/modal-dialog}}
   {{/if}}
