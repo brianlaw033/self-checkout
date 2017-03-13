@@ -1,0 +1,14 @@
+<form>
+  <div class='form-group'>
+    {{input value=username id='username' placeholder='User Name'}}<br />
+    {{input type='password' value=password id='password' placeholder='Enter your Password'}}<br />
+    {{input type='password' value=again id='again' placeholder='Enter your Password Again'}}<br />
+    <select onchange={{action "selectType" value="target.value"}}>
+      <option></option>
+      {{#each login.userType as |type|}}
+        <option value={{type}}>{{type}}</option>
+      {{/each}}
+    </select>
+  </div>
+  <button class='btn' {{action 'submitForm'}}>Submit</button>
+</form>
