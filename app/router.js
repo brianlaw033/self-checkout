@@ -10,6 +10,8 @@ Router.map(function() {
   this.route('customer-index');
   this.route('store-index');
   this.route('sign-up');
+  this.route('sales');
+  this.route('payment');
 });
 
 export default Router;
