@@ -27,9 +27,7 @@ export default Ember.Service.extend({
              self.set('not', false);
              self.set('logedin', true);
              if (temp.get('type') === 'seller'){
-               debugger;
                 self.get("routing").transitionTo("store-index", [temp.get('id')]);
-                debugger;
                 self.set('seller', true);
              }else if (temp.get('type') === 'customer'){
                 self.get("routing").transitionTo("customer-index");
