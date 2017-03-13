@@ -1,7 +1,7 @@
 import DS from 'ember-data';
 
 export default DS.Model.extend({
-  barcrode: DS.attr(),
+  barcode: DS.attr(),
   brand: DS.attr(),
   price: DS.attr(),
   image: DS.attr(),
