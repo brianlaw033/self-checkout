@@ -1,23 +1,36 @@
 {{#if login.logedin}}
   <button class='btn' {{action 'logout'}}>Logout</button>
 {{/if}}
+
 Logged in as: {{login.currentUser}}
+
 {{#if login.customer}}
-<div class='container'>
-  <form>
-     <p>{{input type="number" value=barcode id='barcode'}}</p><br />
-    <button class='btn' {{action 'getBarcode'}}>Get Product</button>
-  </form>
-  {{#if findProduct.isShowingModal}}
-    {{#modal-dialog close="toggleModal" targetAttachment="center" translucentOverlay=true}}
-      <div class='text-center'>
-        {{findProduct.display.name}}<br />
-        {{findProduct.display.brand}}<br />
-        <img class='display' src="{{findProduct.display.image}}"/><br />
-        ${{findProduct.display.price}}<br />
-        <button class='btn-success'{{action 'addToCart' findProduct.display}}>Add to Cart</button>
-      </div>
-    {{/modal-dialog}}
-  {{/if}}
-</div>
+  <div class='container'>
+    <form>
+       <p>{{input type="number" value=barcode id='barcode'}}</p><br />
+      <button class='btn' {{action 'getBarcode'}}>Get Product</button>
+    </form>
+    {{#if findProduct.isShowingModal}}
+      {{#modal-dialog close="toggleModal" targetAttachment="center" translucentOverlay=true}}
+        <div class='text-center'>
+          {{findProduct.display.name}}<br />
+          {{findProduct.display.brand}}<br />
+          <img class='display' src="{{findProduct.display.image}}"/><br />
+          ${{findProduct.display.price}}<br />
+          <button class='btn-success'{{action 'addToCart' findProduct.display}}>Add to Cart</button>
+        </div>
+      {{/modal-dialog}}
+    {{/if}}
+  </div>
 {{/if}}
+
+{{#unless login.customer}}
+  {{#modal-dialog targetAttachment="center" translucentOverlay=true}}
+    <div class='text-center'>
+      <p>
+        Please Login before you continue.
+        Redirecting to Login Page...
+      </p>
+    </div>
+  {{/modal-dialog}}
+{{/unless}}
