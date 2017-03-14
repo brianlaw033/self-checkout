@@ -38,7 +38,14 @@ export default Ember.Route.extend({
     doneSalesArray.push(salesArray);
   },
   show:false,
+
+  setupController(controller,model){
+    this._super(controller,model);
+    controller.set('datasTwo', this.get('datas'));
+  },
+
   activate: function(){
+
     var sale = this.modelFor(this.routeName);
     var sales = sale.sales;
     var data = this.get('datas');
