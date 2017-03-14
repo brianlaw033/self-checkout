@@ -9,11 +9,11 @@ export default Ember.Component.extend({
     },
     update(shop) {
       var params = {
-        name: this.get('name'),
+        shopname: this.get('shopname'),
         location: this.get('location'),
         description: this.get('description'),
         promotion: this.get('promotion'),
-        photos: this.get('photos')
+        photo: this.get('photo')
       };
       this.set('shopFormShow', false);
       this.sendAction('update', shop, params);
