@@ -24,18 +24,16 @@ export default Ember.Route.extend({
       salesArray.push(rowArray);
     });
     for(var i = 0; i <salesArray.length-1; i++){
-      while(salesArray[i][0] == salesArray[i+1][0]){
+      while(salesArray[i][0] === salesArray[i+1][0]){
         salesArray[i][1] = parseInt(salesArray[i][1])+parseInt(salesArray[i+1][1]);
         salesArray[i][2] = parseInt(salesArray[i][2])+parseInt(salesArray[i+1][2]);
         salesArray.splice(i+1,1);
-        if(i == salesArray.length-1){
+        if(i === salesArray.length-1){
           break;
-        };
-      };
-
-    };
+        }
+      }
+    }
     return salesArray;
-    doneSalesArray.push(salesArray);
   },
   show:false,
 
@@ -55,10 +53,9 @@ export default Ember.Route.extend({
     var lastDate=new Date(lastSale.get("year")+', '+lastSale.get('month')+', '+lastSale.get('day'));
     var currentDate=firstDate;
     var salesArrays1 = this.get('createArray');
-    var salesArrays = salesArrays1(sales);
+    var salesArrays2 = salesArrays1(sales);
     while (currentDate<=lastDate){
-      var salesArrays1 = this.get('createArray');
-      var salesArrays = salesArrays1(sales);
+      var salesArrays = salesArrays2;
       var dateFilled = false;
       salesArrays.forEach(function(sale){
         var dateArray = sale[0].split(',');
@@ -66,7 +63,7 @@ export default Ember.Route.extend({
         var saleDateTester= ((date.getYear()+1900)+", "+(date.getMonth()+1)+", "+date.getDate());
         var currentDate1=new Date (currentDate);
         var currentDateTester= ((currentDate1.getYear()+1900)+", "+(currentDate1.getMonth()+1)+", "+currentDate1.getDate());
-        if(currentDateTester == saleDateTester){
+        if(currentDateTester === saleDateTester){
           var srow_arr = [];
           srow_arr.push(date);
           var quantity = sale[1];
@@ -75,15 +72,15 @@ export default Ember.Route.extend({
           srow_arr.push(totalPrice);
           data.push(srow_arr);
           dateFilled=true;
-        };
+        }
       });
-      if(dateFilled==false){
+      if(dateFilled === false){
         var row_arr = [];
         row_arr.push( newDate );
         row_arr.push(0);
         row_arr.push(0);
         data.push(row_arr);
-      };
+      }
       var newDate=new Date (currentDate);
       currentDate = newDate.setDate(newDate.getDate() + parseInt(1));
     }
