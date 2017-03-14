@@ -3,6 +3,7 @@
 
 <div class="container">
   {{shop-info shop=model.shop}}
+  {{update-shop shop=model.shop update="update"}}
 
   {{#each model.shop.products as |product|}}
     {{product-tile product=product}}

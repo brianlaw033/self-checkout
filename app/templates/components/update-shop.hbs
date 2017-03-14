@@ -4,8 +4,8 @@
   <form>
 
     <div class="form-group">
-      <label for="name">Store Name:</label>
-      {{input value=name id="name" placeholder=shop.name}}
+      <label for="shopname">Store Name:</label>
+      {{input value=shopname id="shopname" placeholder=shop.shopname}}
     </div>
 
     <div class="form-group">
@@ -24,8 +24,8 @@
     </div>
 
     <div class="form-group">
-      <label for="photos">Upload photos:</label>
-      {{input value=photos id="photos" placeholder=shop.photos}}
+      <label for="photo">Upload photos:</label>
+      {{input value=photo id="photo" placeholder=shop.photo}}
     </div>
 
     <button {{action 'update' shop}}>Save</button>
