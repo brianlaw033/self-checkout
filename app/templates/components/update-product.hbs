@@ -33,9 +33,9 @@
       {{input value=image id="image" placeholder=product.image}}
     </div>
 
-    <button {{action 'update' product}}>Save</button>
+    <button {{action 'update' product}} class="btn btn-warning">Save</button>
   </form>
 </div>
 {{else}}
-<button {{action 'productFormShow'}}>Update</button>
+<button {{action 'productFormShow'}} class="btn btn-warning">Update</button>
 {{/if}}
