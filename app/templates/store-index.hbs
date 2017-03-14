@@ -1,8 +1,11 @@
-
-{{shop-info shop=shop}}
-
 {{store-navbar}}
 
-{{#each model.products as |product|}}
-  {{product-tile product=product}}
-{{/each}}
+<div class="container">
+  {{shop-info shop=model.shop}}
+
+  {{#each model.shop.products as |product|}}
+    {{product-tile product=product}}
+  {{/each}}
+
+  {{new-product shop=model.shop saveProduct="saveProduct"}}
+</div>

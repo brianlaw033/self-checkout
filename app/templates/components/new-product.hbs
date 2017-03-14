@@ -1,0 +1,44 @@
+{{#if addNewProduct}}
+  <div>
+    <form>
+      <div class="form-group">
+        <label for="barcode">Barcode</label>
+        {{input value=barcode id="barcode"}}
+      </div>
+
+      <div class="form-group">
+        <label for="brand">Brand</label>
+        {{input value=brand id="brand"}}
+      </div>
+
+      <div class="form-group">
+        <label for="description">Description</label>
+        {{input value=description id="description"}}
+      </div>
+
+      <div class="form-group">
+        <label for="image">Image</label>
+        {{input value=image id="image"}}
+      </div>
+
+      <div class="form-group">
+        <label for="name">Product Name</label>
+        {{input value=name id="name"}}
+      </div>
+
+      <div class="form-group">
+        <label for="price">Price</label>
+        {{input value=price id="price"}}
+      </div>
+
+      <div class="form-group">
+        <label for="quantity_selected">quantity_selected</label>
+        {{input value=quantity_selected id="quantity_selected"}}
+      </div>
+
+      <button {{action 'saveProduct'}} class="btn btn-success">Save Product</button>
+    </form>
+  </div>
+{{else}}
+  <button{{action 'productFormShow'}} class="btn btn-success">New Product</button>
+{{/if}}
