@@ -71,6 +71,10 @@ export default Ember.Service.extend({
           self.set('customer', true);
         }
       })
+    }else{
+      Ember.run.later((function(){
+        self.get("routing").transitionTo("index");
+      }), 2000);
     }
   }.on('init')
 });
