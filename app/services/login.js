@@ -12,6 +12,7 @@ export default Ember.Service.extend({
    userType: ['seller', 'customer'],
    currentUser: null,
    userId: null,
+   userObj: null,
 
   checkType(username, password){
     const hash = CryptoJS.SHA256(password).toString();
@@ -37,7 +38,7 @@ export default Ember.Service.extend({
              }else if (temp.get('type') === 'customer'){
                 self.set('currentUser', temp.get('username'));
                 Cookies.set('userId', temp.get('id'));
-                self.get("routing").transitionTo("customer-index");
+                self.get("routing").transitionTo("select-shop");
                 self.set('customer', true);
              }
            }else{
@@ -62,8 +63,11 @@ export default Ember.Service.extend({
     if(!!userId){
       return this.get('store').findRecord('user', userId).then(function(user){
         var username = user.get('username');
+        var id = user.get('id');
         var type = user.get('type');
+        self.set('person', user);
         self.set('logedin', true);
+        self.set('userId', id);
         self.set('currentUser', username);
         if (type === 'seller'){
           self.set('seller', true);

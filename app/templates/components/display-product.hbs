@@ -8,7 +8,7 @@ Logged in as: {{login.currentUser}}
   <div class='container'>
     <form>
        <p>{{input type="number" value=barcode id='barcode'}}</p><br />
-      <button class='btn' {{action 'getBarcode'}}>Get Product</button>
+      <button class='btn' {{action 'getBarcode' params}}>Get Product</button>
     </form>
     {{#if findProduct.isShowingModal}}
       {{#modal-dialog close="toggleModal" targetAttachment="center" translucentOverlay=true}}
