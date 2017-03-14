@@ -55,23 +55,24 @@ export default Ember.Route.extend({
       startup: true,
       easing: 'inAndOut',
    },
-   series: {0: {targetAxisIndex:1,
-                areaOpacity: 0,
-                lineWidth:2.5},
+   series: {
+            // 0: {targetAxisIndex:1,
+            //     areaOpacity: 0,
+            //     lineWidth:2.5},
             1: {targetAxisIndex:0,
                 areaOpacity: 0.8,
-                lineWidth:0}
+                lineWidth:3}
   },
   vAxes: {
     0: {
       title:'Sales per day',
       format: 'currency'
     },
-    1: {
-      title:'Items',
-      format: '',
-      textStyle: {color: '#356bc4'}
-    }
+    // 1: {
+    //   title:'Items',
+    //   format: '',
+    //   textStyle: {color: '#356bc4'}
+    // }
     }
   },
 
