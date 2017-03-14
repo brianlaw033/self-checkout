@@ -1,4 +1,5 @@
-
-{{shop.shopname}}<br>
-<img src={{shop.photo}} id="shop-image"><br>
-{{shop.location}}<br>
+{{#if login.seller}}
+  {{shop.shopname}}<br>
+  <img src={{shop.photo}} id="shop-image"><br>
+  {{shop.location}}<br>
+{{/if}}

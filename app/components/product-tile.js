@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-
+login: Ember.inject.service(),
   actions: {
     update(product, params) {
       Object.keys(params).forEach(function(key) {
