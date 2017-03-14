@@ -1,8 +1,6 @@
 {{store-navbar}}
-  {{area-chart data=datasTwo options=options}}
+{{area-chart data=datasTwo options=options}}
 
-{{datas}}
-{{graph-display sales=model.sales}}
 <div class="container">
   {{#each model.sales as |sale|}}
     {{sale-tile sale=sale}}
