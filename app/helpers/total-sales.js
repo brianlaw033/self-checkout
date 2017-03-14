@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-export function totalSales(params/*, hash*/) {
+export function totalSales(params) {
   var newtotal=0;
   var sales=params[0];
   sales.forEach(function(sale){
