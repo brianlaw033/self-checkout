@@ -1,4 +1,9 @@
-{{store-navbar sales=model.sales}}
+{{store-navbar}}
+{{area-chart data=datas options=options}}
+
+{{datas}}
+
+{{graph-display sales=model.sales}}
 <div class="container">
   {{#each model.sales as |sale|}}
     {{sale-tile sale=sale}}
@@ -9,4 +14,3 @@
     </div>
   </div>
 </div>
-{{graph-display sales=model.sales}}

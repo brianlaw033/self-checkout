@@ -1,24 +1,52 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  salesGraph: Ember.inject.service(),
   model() {
     return this.store.findAll('sale');
   },
 
-  datas: [['Year', 'Sales']],
+  datas: [['Date', 'Quantity','Revenue']],
   options: {
     title: 'Total Sales',
     height: 400,
     width: 1000,
+    orientation: 'horizontal',
 
     animation: {
       startup: true,
       easing: 'inAndOut',
     },
   },
+  createArray(sales){
+    var salesArray = [];
+    var salesMade=sales;
+    salesMade.forEach(function(sale){
+      var rowArray = [];
+      var date = new Date(sale.get('year')+ ', '+sale.get('month')+', ' + sale.get('day'));
+      var dateTester= ((date.getYear()+1900)+", "+(date.getMonth()+1)+", "+date.getDate());
+      rowArray.push(dateTester);
+      var quantity = sale.get('quantity_selected');
+      rowArray.push(quantity);
+      var totalPrice = sale.get('quantity_selected')*sale.get('price');
+      rowArray.push(totalPrice);
+      salesArray.push(rowArray);
+    });
+    for(var i = 0; i <salesArray.length; i++){
+      while(salesArray[i][0] == salesArray[i+1][0]){
+        salesArray[i][1] = parseInt(salesArray[i][1])+parseInt(salesArray[i+1][1]);
+        salesArray[i][2] = parseInt(salesArray[i][2])+parseInt(salesArray[i+1][2]);
+        salesArray.splice(i+1,1);
+        if(i == salesArray.length-1){
+          break;
+        };
+      };
 
+    };
+    return salesArray;
+    doneSalesArray.push(salesArray);
+  },
   show:false,
+  doneSalesArray: [],
   actions : {
     showSales(sales){
       var data = this.get('datas');
@@ -27,34 +55,38 @@ export default Ember.Component.extend({
       var lastSale=sales.get('lastObject');
       var lastDate=new Date(lastSale.get("year")+', '+lastSale.get('month')+', '+lastSale.get('day'));
       var currentDate=firstDate;
-      var salesMade=sales;
+      var salesArrays1 = this.get('createArray');
+      var salesArrays = salesArrays1(sales);
       while (currentDate<=lastDate){
+        var salesArrays1 = this.get('createArray');
+        var salesArrays = salesArrays1(sales);
         var dateFilled = false;
-        salesMade.forEach(function(sale){
-          debugger;
-          var date = new Date (sale.get('year')+", "+sale.get('month')+", "+sale.get('day'));
-          var saleDateTester= ((sale.get('year')-1900)+", "+sale.get('month')+", "+sale.get('day'));
+        salesArrays.forEach(function(sale){
+          var dateArray = sale[0].split(',');
+          var date = new Date (dateArray[0]+", "+dateArray[1]+", "+dateArray[2]);
+          var saleDateTester= ((date.getYear()+1900)+", "+(date.getMonth()+1)+", "+date.getDate());
           var currentDate1=new Date (currentDate);
-          var currentDateTester= (currentDate1.getYear()+", "+(currentDate1.getMonth()+1)+", "+currentDate1.getDate());
+          var currentDateTester= ((currentDate1.getYear()+1900)+", "+(currentDate1.getMonth()+1)+", "+currentDate1.getDate());
           if(currentDateTester == saleDateTester){
             var srow_arr = [];
             srow_arr.push(date);
-            var quantity = sale.get('quantity_selected');
+            var quantity = sale[1];
             srow_arr.push(quantity);
+            var totalPrice = sale[2];
+            srow_arr.push(totalPrice);
             data.push(srow_arr);
-            currentDate = currentDate1.setDate(currentDate1.getDate() + parseInt(1));
             dateFilled=true;
           };
         });
         if(dateFilled==false){
           var row_arr = [];
-          var newDate=new Date (currentDate);
           row_arr.push( newDate );
           row_arr.push(0);
+          row_arr.push(0);
           data.push(row_arr);
-          currentDate = newDate.setDate(newDate.getDate() + parseInt(1));
         };
-
+        var newDate=new Date (currentDate);
+        currentDate = newDate.setDate(newDate.getDate() + parseInt(1));
       }
       this.set('show', true);
     }

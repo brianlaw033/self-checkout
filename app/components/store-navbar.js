@@ -1,6 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+<<<<<<< HEAD
   salesGraph: Ember.inject.service(),
   login: Ember.inject.service(),
 
@@ -12,4 +13,6 @@ export default Ember.Component.extend({
       this.get('login').logout();
     }
   }
+=======
+>>>>>>> gabriel
 });
