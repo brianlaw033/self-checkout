@@ -14,12 +14,10 @@ export default Ember.Component.extend({
       this.get('shoppingCart').add(item);
     },
 
-    // addToCart(item) {
-    //   this.get('shoppingCart').add(item);
-    //   if (this.get("isShowingModal") == true){
-    //     this.toggleProperty('isShowingModal');
-    //   }
-    // },
+    logout(){
+      this.get('login').logout();
+    },
+
     toggleModal() {
       this.get('findProduct').toggleModal();
     }

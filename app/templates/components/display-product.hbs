@@ -1,3 +1,7 @@
+{{#if login.logedin}}
+  <button class='btn' {{action 'logout'}}>Logout</button>
+{{/if}}
+Logged in as: {{login.currentUser}}
 {{#if login.customer}}
 <div class='container'>
   <form>
