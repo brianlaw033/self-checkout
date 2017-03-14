@@ -6,6 +6,7 @@ export default Ember.Route.extend({
       sales:this.store.findAll('sale')
     });
   },
+
   doneSalesArray: [],
   datas: [['Date', 'Quantity','Revenue']],
   createArray(sales){
@@ -40,10 +41,41 @@ export default Ember.Route.extend({
   setupController(controller,model){
     this._super(controller,model);
     controller.set('datasTwo', this.get('datas'));
+    controller.set('options', this.get('options'));
+  },
+
+  options: {
+    title: 'Store Sales Record',
+    interpolateNulls: true,
+    height: 400,
+    width: 1000,
+    hAxis: {title: 'Timeframe', format: 'dd-MMM', gridlines:{count:10}},
+    orientation: 'horizontal',
+    animation: {
+      startup: true,
+      easing: 'inAndOut',
+   },
+   series: {0: {targetAxisIndex:1,
+                areaOpacity: 0,
+                lineWidth:2.5},
+            1: {targetAxisIndex:0,
+                areaOpacity: 0.8,
+                lineWidth:0}
+  },
+  vAxes: {
+    0: {
+      title:'Sales per day',
+      format: 'currency'
+    },
+    1: {
+      title:'Items',
+      format: '',
+      textStyle: {color: '#356bc4'}
+    }
+    }
   },
 
   activate: function(){
-
     var sale = this.modelFor(this.routeName);
     var sales = sale.sales;
     var data = this.get('datas');
