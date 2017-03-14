@@ -1,7 +1,7 @@
 {{#if login.customer}}
 <div class='container'>
   <form>
-     <p>{{input type="number" value=barcode id='barcode'}}</p><br />
+     <p>{{input type="number" value=barcode id='barcode' placeholder="barcode"}}</p><br />
     <button class='btn' {{action 'getBarcode'}}>Get Product</button>
   </form>
   {{#if findProduct.isShowingModal}}
