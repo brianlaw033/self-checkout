@@ -12,15 +12,14 @@ export default Ember.Route.extend({
     var salesArray = [];
     var salesMade=sales;
     salesMade.forEach(function(sale){
-
       var rowArray = [];
       var date = new Date(sale.get('year')+ ', '+sale.get('month')+', ' + sale.get('day'));
       var dateTester= ((date.getYear()+1900)+", "+(date.getMonth()+1)+", "+date.getDate());
       rowArray.push(dateTester);
-      var quantity = sale.get('quantity_selected');
-      rowArray.push(quantity);
       var totalPrice = sale.get('quantity_selected')*sale.get('price');
       rowArray.push(totalPrice);
+      var lastMonthSale = 0;
+      rowArray.push(lastMonthSale);
       salesArray.push(rowArray);
     });
     for(var i = 0; i <salesArray.length; i++){
@@ -50,8 +49,8 @@ export default Ember.Route.extend({
     var sales = sale.sales;
     var data = this.get('datas');
     var firstSale=sales.get('firstObject');
-    var firstDate=new Date(firstSale.get("year")+', '+firstSale.get('month')+', '+firstSale.get('day'));
     var lastSale=sales.get('lastObject');
+    var firstDate=new Date(lastSale.get("year")+', '+(lastSale.get('month')-1)+', '+lastSale.get('day'));
     var lastDate=new Date(lastSale.get("year")+', '+lastSale.get('month')+', '+lastSale.get('day'));
     var currentDate=firstDate;
     var salesArrays1 = this.get('createArray');
@@ -60,6 +59,7 @@ export default Ember.Route.extend({
       var salesArrays1 = this.get('createArray');
       var salesArrays = salesArrays1(sales);
       var dateFilled = false;
+      oldsalesArrays.forEach
       salesArrays.forEach(function(sale){
         var dateArray = sale[0].split(',');
         var date = new Date (dateArray[0]+", "+dateArray[1]+", "+dateArray[2]);
