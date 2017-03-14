@@ -1,12 +1,14 @@
-<h1>{{product.name}}</h1>
+{{#if login.seller}}
+  <h1>{{product.name}}</h1>
 
-<hr>
+  <hr>
 
-<img src={{product.image}} alt={{product.title}}>
+  <img src={{product.image}} alt={{product.title}}>
 
-<h2>{{product.description}}</h2>
+  <h2>{{product.description}}</h2>
 
-{{update-product product=product update="update"}}
+  {{update-product product=product update="update"}}
 
-<button {{action 'destroyProduct' product}} class="btn btn-danger">Delete Product</button>
-<br>
+  <button {{action 'destroyProduct' product}} class="btn btn-danger">Delete Product</button>
+  <br>
+{{/if}}

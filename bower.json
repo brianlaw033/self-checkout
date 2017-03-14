@@ -1,6 +1,7 @@
 {
   "name": "self-checkout",
   "dependencies": {
-    "bootstrap": "^3.3.7"
+    "bootstrap": "^3.3.7",
+    "js-cookie": "^2.1.3"
   }
 }

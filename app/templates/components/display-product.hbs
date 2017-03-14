@@ -1,4 +1,11 @@
+{{#if login.logedin}}
+  <button class='btn' {{action 'logout'}}>Logout</button>
+{{/if}}
+
+Logged in as: {{login.currentUser}}
+
 {{#if login.customer}}
+
 <div class='container'>
   <form>
      <p>{{input type="number" value=barcode id='barcode' placeholder="barcode"}}</p><br />
@@ -16,4 +23,16 @@
     {{/modal-dialog}}
   {{/if}}
 </div>
+
 {{/if}}
+
+{{#unless login.customer}}
+  {{#modal-dialog targetAttachment="center" translucentOverlay=true}}
+    <div class='text-center'>
+      <p>
+        Please Login before you continue.
+        Redirecting to Login Page...
+      </p>
+    </div>
+  {{/modal-dialog}}
+{{/unless}}
