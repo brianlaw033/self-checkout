@@ -23,7 +23,7 @@ export default Ember.Route.extend({
       rowArray.push(totalPrice);
       salesArray.push(rowArray);
     });
-    for(var i = 0; i <salesArray.length; i++){
+    for(var i = 0; i <salesArray.length-1; i++){
       while(salesArray[i][0] == salesArray[i+1][0]){
         salesArray[i][1] = parseInt(salesArray[i][1])+parseInt(salesArray[i+1][1]);
         salesArray[i][2] = parseInt(salesArray[i][2])+parseInt(salesArray[i+1][2]);
