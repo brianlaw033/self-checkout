@@ -5,9 +5,9 @@ export default Ember.Component.extend({
   login: Ember.inject.service(),
   shoppingCart: Ember.inject.service(),
   actions:{
-    getBarcode(){
+    getBarcode(params){
         var tempNum = this.get('barcode');
-        this.get('findProduct').getProduct(tempNum);
+        this.get('findProduct').getProduct(tempNum, params);
         // this.toggleProperty('isShowingModal');
     },
     addToCart(item) {

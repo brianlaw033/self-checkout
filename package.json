@@ -40,6 +40,7 @@
     "ember-cli-uglify": "^1.2.0",
     "ember-cryptojs-shim": "2.1.0",
     "ember-data": "^2.11.0",
+    "ember-emberfire-find-query": "git+https://github.com/TomHeatwole/ember-emberfire-find-query.git",
     "ember-export-application-global": "^1.0.5",
     "ember-google-charts": "1.5.3",
     "ember-load-initializers": "^0.6.0",
