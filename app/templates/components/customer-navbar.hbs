@@ -1,7 +1,7 @@
 {{#if login.logedin}}
   <div>
     <header>
-      <nav class="navbar navbar-default">
+      <nav class="navbar navbar-inverse">
         <div class="container-fluid">
            <div class="navbar-header">
              <a class="navbar-brand">{{login.currentUser}}</a>
@@ -9,7 +9,7 @@
           <ul class="nav navbar-nav">
             <li>{{#link-to 'select-shop'}}Change Store{{/link-to}}</li>
             <li>{{#link-to 'sales' login.userId}}Purchase History{{/link-to}}</li>
-            <li><button type='button'{{action "logout"}}>Logout</button></li>
+            <li><button class='logout' type='button'{{action "logout"}}>Logout</button></li>
           </ul>
         </div>
       </nav>

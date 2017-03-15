@@ -5,6 +5,6 @@ export default Ember.Component.extend({
   actions:{
     logout(){
       this.get('login').logout();
-    }
+    },
   }
 });
