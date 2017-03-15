@@ -1,0 +1,26 @@
+{{#if customerFormShow}}
+<h4>Update Your Profile Details</h4>
+<div>
+  <form>
+
+    <div class="form-group">
+      <label for="name">Your Name:</label>
+      {{input value=name id="name" placeholder=customer.name}}
+    </div>
+
+    <div class="form-group">
+      <label for="location">Your Location</label>
+      {{input value=location id="location" placeholder=customer.location}}
+    </div>
+
+    <div class="form-group">
+      <label for="icon">Change Your Icon:</label>
+      {{input value=icon id="icon" placeholder=customer.icon}}
+    </div>
+
+    <button {{action 'update' customer}}>Save</button>
+  </form>
+</div>
+{{else}}
+<button {{action 'customerFormShow'}}>Update Profile Details</button>
+{{/if}}
