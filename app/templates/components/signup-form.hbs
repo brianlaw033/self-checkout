@@ -25,3 +25,12 @@
         <button class='btn' {{action 'submitShop'}}>Next</button>
       </form>
     {{/if}}
+
+    {{#if signUpService.customer}}
+      <form>
+        <h3>Enter your profile details:</h3>
+        {{input value=name id='name' placeholder='Input Your Name'}}<br />
+        {{input value=location id='location' placeholder='Input Your Location'}}<br />
+        <button class='btn' {{action 'submitCustomer'}}>Next</button>
+      </form>
+    {{/if}}

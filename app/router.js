@@ -13,6 +13,7 @@ Router.map(function() {
   this.route('sales', {path: '/history/:user_id'});
   this.route('payment');
   this.route('select-shop');
+  this.route('customer', {path: '/customer/:user_id'});
 });
 
 export default Router;

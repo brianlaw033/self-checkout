@@ -24,7 +24,9 @@ export default Ember.Service.extend({
                          newUser.save();
                          self.set('b4Submit', false);
                          if(type != 'seller'){
-                           self.get("routing").transitionTo("index");
+                           self.set('customer', true);
+                           self.set('tempUsername', username);
+                           self.get("routing").transitionTo("sign-up");
                          }else{
                            self.set('seller', true);
                            self.set('tempUsername', username);
@@ -62,6 +64,29 @@ export default Ember.Service.extend({
       var tempUser = params.user;
       tempUser.set('shop',newShop);
       newShop.save().then(function(){
+        return tempUser.save();
+      });
+      self.get("routing").transitionTo("index");
+    })
+  },
+
+  addCustomer(name, location){
+    var self = this;
+    return this.get('store').query('user',{
+      orderBy: 'username',
+      equalTo:  this.get('tempUsername')
+    }).then(function(users){
+      var user = users.get('firstObject');
+      var params = {
+        name: name,
+        icon: name,
+        location: location,
+        user: user
+      }
+      var newCustomer = self.get('store').createRecord('customer', params);
+      var tempUser = params.user;
+      tempUser.set('customer',newCustomer);
+      newCustomer.save().then(function(){
         return tempUser.save();
       });
       self.get("routing").transitionTo("index");
