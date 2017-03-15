@@ -13,5 +13,11 @@ export default Ember.Service.extend({
   },
   infoWindow(selectedMapParam) {
     return new this.googleMaps.InfoWindow(selectedMapParam);
+  },
+  DistMatrix() {
+    return new this.googleMaps.DistanceMatrixService;
+  },
+  LatLng(latitude, longitude) {
+    return new this.googleMaps.LatLng(latitude, longitude);
   }
 });

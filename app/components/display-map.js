@@ -2,7 +2,10 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   map: Ember.inject.service('google-map'),
+  locations: null,
   requiredMap: null,
+  origin: null,
+  results: null,
   init: function () {
     this._super();
     Ember.run.schedule("afterRender",this,function() {
@@ -12,6 +15,7 @@ export default Ember.Component.extend({
   actions: {
     showMap: function () {
       //creating a new map
+      var self = this;
       var container = this.$('#the-map')[0];
       var defaultLocation = {lat: 22.288800, lng: 114.171386};
       var options = {
@@ -31,6 +35,7 @@ export default Ember.Component.extend({
             lat: position.coords.latitude,
             lng: position.coords.longitude
           };
+          self.set('origin', pos);
           infoWindow.setPosition(pos);
           infoWindow.setContent('You are here. ');
           requiredMap.setCenter(pos);
@@ -47,6 +52,7 @@ export default Ember.Component.extend({
                               'Error: The Geolocation service failed.' :
                               'Error: Your browser doesn\'t support geolocation.');
       };
+
 
       //adding markers for the stores
       var map = this.get('map');
@@ -68,7 +74,7 @@ export default Ember.Component.extend({
         {lat: 22.276031, lng: 114.170348},
         {lat: 22.277612, lng: 114.171957}
       ];
-
+      this.set('locations', locations);
       locations.map(function(location, i) {
         // var param = {map: requiredMap};
         // var infoWindow = map.infoWindow(param);
@@ -133,6 +139,38 @@ export default Ember.Component.extend({
                               'Error: The Geolocation service failed.' :
                               'Error: Your browser doesn\'t support geolocation.');
       };
+    },
+
+    getDistance() {
+      var self = this;
+      var map = this.get('map');
+      var service = this.get('map').DistMatrix();
+      var origin = this.get('origin');
+      var locations = this.get('locations');
+      var requiredMap = this.get('requiredMap');
+      var distance_text = [];
+      //get the distance matrix
+      service.getDistanceMatrix({
+        origins: [origin],
+        destinations: locations,
+        travelMode: 'WALKING',
+        unitSystem: google.maps.UnitSystem.METRIC,
+        avoidHighways: false,
+        avoidTolls: false
+      }, function(response, status) {
+        if (status !== 'OK') {
+          alert('Error was: ' + status);
+        } else {
+          var originList = response.originAddresses;
+          var destinationList = response.destinationAddresses;
+          var results = response.rows[0].elements;
+          for (var j = 0; j < results.length; j++) {
+            distance_text[j] = String(results[j].distance.text);
+          }
+          debugger;
+          self.set('results', distance_text);
+        }
+      });
     }
   }
 });
