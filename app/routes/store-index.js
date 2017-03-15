@@ -10,7 +10,7 @@ export default Ember.Route.extend({
         if(params[key]!==undefined) {
           shop.set(key,params[key]);
         }
-        shop.save();
+        shop.get('_internalModel').save();
       });
     },
 
@@ -21,6 +21,6 @@ export default Ember.Route.extend({
       newProduct.save().then(function () {
         return shop.get('_internalModel').save();
       });
-    },
+    }
   }
 });

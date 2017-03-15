@@ -1,0 +1,12 @@
+{{#unless login.logedin}}
+  {{#modal-dialog targetAttachment="center" translucentOverlay=true}}
+    <div class='text-center'>
+      <p>
+        Please Login before you continue.<br />
+        Redirecting to Login Page...
+        If not redirecting, press the button below.
+      </p>
+      {{#link-to 'index'}}<button class='btn'>Return to Login Page</button>{{/link-to}}
+    </div>
+  {{/modal-dialog}}
+{{/unless}}

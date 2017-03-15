@@ -3,14 +3,3 @@
   <img src={{shop.photo}} id="shop-image"><br>
   {{shop.location}}<br>
 {{/if}}
-
-{{#unless login.logedin}}
-  {{#modal-dialog targetAttachment="center" translucentOverlay=true}}
-    <div class='text-center'>
-      <p>
-        Please Login before you continue.
-        Redirecting to Login Page...
-      </p>
-    </div>
-  {{/modal-dialog}}
-{{/unless}}
