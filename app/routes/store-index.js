@@ -21,6 +21,6 @@ export default Ember.Route.extend({
       newProduct.save().then(function () {
         return shop.get('_internalModel').save();
       });
-    },
+    }
   }
 });
