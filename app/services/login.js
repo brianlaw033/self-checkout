@@ -30,6 +30,7 @@ export default Ember.Service.extend({
              self.set('logedin', true);
              if (temp.get('type') === 'seller'){
                 self.set('currentUser', temp.get('username'));
+                self.set('userId', temp.get('id'));
                 Cookies.set('userId', temp.get('id'));
                 Cookies.set('type', temp.get('type'));
                 Cookies.set('currentUser', temp.get('username'));
@@ -37,6 +38,7 @@ export default Ember.Service.extend({
                 self.get("routing").transitionTo("store-index", [temp.get('id')]);
              }else if (temp.get('type') === 'customer'){
                 self.set('currentUser', temp.get('username'));
+                self.set('userId', temp.get('id'));
                 Cookies.set('userId', temp.get('id'));
                 Cookies.set('type', temp.get('type'));
                 Cookies.set('currentUser', temp.get('username'));
@@ -65,6 +67,7 @@ export default Ember.Service.extend({
     var self = this;
     var userId = Cookies.get('userId');
     var type = Cookies.get('type');
+    this.set('userId', userId);
     var currentUser = Cookies.get('currentUser');
     if(!!userId){
       self.set('logedin', true);

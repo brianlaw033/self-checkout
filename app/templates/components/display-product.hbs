@@ -1,12 +1,12 @@
 {{#if login.customer}}
-  <div class='container'>
+  <div class='container displayProduct'>
     <form>
        <p>{{input type="number" value=barcode id='barcode'}}</p><br />
       <button class='btn' {{action 'getBarcode' params}}>Get Product</button>
     </form>
     {{#if findProduct.isShowingModal}}
       {{#modal-dialog close="toggleModal" targetAttachment="center" translucentOverlay=true}}
-        <div class='text-center'>
+        <div class='text-center displayProduct'>
           {{findProduct.display.name}}<br />
           {{findProduct.display.brand}}<br />
           <img class='display' src="{{findProduct.display.image}}"/><br />
