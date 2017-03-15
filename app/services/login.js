@@ -23,23 +23,25 @@ export default Ember.Service.extend({
     }
   ).then(function(users){
     if(users.get('firstObject') != null){
-
            var temp = users.get('firstObject');
            var tempPw = temp.get('password');
            if(tempPw === hash){
              self.set('person', temp);
-             self.set('not', false);
              self.set('logedin', true);
              if (temp.get('type') === 'seller'){
                 self.set('currentUser', temp.get('username'));
                 Cookies.set('userId', temp.get('id'));
-                self.get("routing").transitionTo("store-index", [temp.get('id')]);
+                Cookies.set('type', temp.get('type'));
+                Cookies.set('currentUser', temp.get('username'));
                 self.set('seller', true);
+                self.get("routing").transitionTo("store-index", [temp.get('id')]);
              }else if (temp.get('type') === 'customer'){
                 self.set('currentUser', temp.get('username'));
                 Cookies.set('userId', temp.get('id'));
-                self.get("routing").transitionTo("select-shop");
+                Cookies.set('type', temp.get('type'));
+                Cookies.set('currentUser', temp.get('username'));
                 self.set('customer', true);
+                self.get("routing").transitionTo("select-shop");
              }
            }else{
              alert('Wrong password or username');
@@ -52,6 +54,8 @@ export default Ember.Service.extend({
   logout(){
     this.set('currentUser', null)
     Cookies.remove('userId');
+    Cookies.remove('type');
+    Cookies.remove('currentUser');
     this.set('seller', false);
     this.set('customer', false);
     this.set('logedin', false);
@@ -60,22 +64,23 @@ export default Ember.Service.extend({
   initializeFromCookie: function(){
     var self = this;
     var userId = Cookies.get('userId');
+    var type = Cookies.get('type');
+    var currentUser = Cookies.get('currentUser');
     if(!!userId){
-      return this.get('store').findRecord('user', userId).then(function(user){
-        var username = user.get('username');
-        var id = user.get('id');
-        var type = user.get('type');
-        self.set('person', user);
-        self.set('logedin', true);
-        self.set('userId', id);
-        self.set('currentUser', username);
-        if (type === 'seller'){
+      self.set('logedin', true);
+      self.set('currentUser', currentUser);
+      if (type === 'seller'){
           self.set('seller', true);
-        }else{
+          if(self.get('routing').router.currentPath == 'index'){
+            self.get("routing").transitionTo("store-index", [userId]);
+          }
+        }else if (type === 'customer'){
           self.set('customer', true);
+          if(self.get('routing').router.currentPath == 'index'){
+            self.get("routing").transitionTo("select-shop");
+          }
         }
-      })
-    }else{
+    }else if(self.get('routing').router.currentPath != 'index'){
       Ember.run.later((function(){
         self.get("routing").transitionTo("index");
       }), 2000);

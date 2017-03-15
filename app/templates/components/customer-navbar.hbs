@@ -1,5 +1,5 @@
 {{#if login.logedin}}
-  <div class= "container">
+  <div>
     <header>
       <nav class="navbar navbar-default">
         <div class="container-fluid">
@@ -7,13 +7,12 @@
              <a class="navbar-brand">{{login.currentUser}}</a>
            </div>
           <ul class="nav navbar-nav">
-            <li>{{#link-to 'store-index' login.userId}}My Store{{/link-to}}</li>
-            <li>{{#link-to 'sales' login.userId}}Sales{{/link-to}}</li>
-            <li><button{{action "logout"}}>Logout</button></li>
+            <li>{{#link-to 'select-shop'}}Change Store{{/link-to}}</li>
+            <li>{{#link-to 'sales' login.userId}}Purchase History{{/link-to}}</li>
+            <li><button type='button'{{action "logout"}}>Logout</button></li>
           </ul>
         </div>
       </nav>
     </header>
-      {{outlet}}
   </div>
 {{/if}}
