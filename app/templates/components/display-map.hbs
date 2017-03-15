@@ -8,4 +8,13 @@
     </form>
   </div>
   <div id="the-map"></div>
+  <div>
+    <button {{action "getDistance"}} class="btn btn-success">Get Distance</button>
+    <strong>Results</strong>
+  </div>
+  <div id="output">
+    {{#each results as |result|}}
+      {{result}}
+    {{/each}}
+  </div>
 </div>

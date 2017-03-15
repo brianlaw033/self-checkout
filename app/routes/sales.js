@@ -1,6 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
+  login: Ember.inject.service(),
   model(params) {
     return Ember.RSVP.hash({
       sales:this.store.findAll('sale'),
@@ -9,6 +10,7 @@ export default Ember.Route.extend({
   },
 
   doneSalesArray: [],
+  constantDatas: [['Date', "This Month's Revenue" ,"Last Month's Revenue"]],
   datas: [['Date', "This Month's Revenue" ,"Last Month's Revenue"]],
   matching : [],
   createArray(sales){
@@ -75,7 +77,10 @@ export default Ember.Route.extend({
   },
 
   activate: function(){
-    debugger;
+
+    this.set('doneSalesArray', []);
+    this.set('matching', []);
+    this.set('datas', [['Date', "This Month's Revenue" ,"Last Month's Revenue"]]);
     var info = this.modelFor(this.routeName);
     var user = info.user;
     var sales = info.sales;
@@ -83,13 +88,10 @@ export default Ember.Route.extend({
     var shop = user.get('shop');
     var shopId = shop.get('id');
     sales.forEach(function(soldItem){
-      debugger;
-
       if (soldItem.get('shop').get('id')== shopId){
         matching.push(soldItem);
       }
     });
-    console.log(matching);
     var data = this.get('datas');
     var currentDate1=new Date ();
     var currentDateTester= new Date((currentDate1.getYear()+1900)+", "+(currentDate1.getMonth()+1)+", "+(currentDate1.getDate()));
@@ -98,13 +100,12 @@ export default Ember.Route.extend({
     var currentDate=oneMonthAgoDateTester;
     var salesArrays1 = this.get('createArray');
     var salesArrays2 = salesArrays1(matching);
+    debugger;
     while (currentDate<currentDateTester1){
-
       var salesArrays = salesArrays2;
       var dateFilled = false;
       console.log(salesArrays);
       salesArrays.forEach(function(sale){
-
         var dateArray = sale[0].split(',');
         var date = new Date (dateArray[0]+", "+dateArray[1]+", "+dateArray[2]);
         var saleDateTester= ((date.getYear()+1900)+", "+(date.getMonth()+1)+", "+date.getDate());
@@ -114,7 +115,6 @@ export default Ember.Route.extend({
         var lastMonthDateTester=((currentDate1.getYear()+1900)+", "+(currentDate1.getMonth())+", "+currentDate1.getDate());
         var allfilled = false;
         if(currentDateTester === saleDateTester){
-
           dateFilled=dateFilled;
           var srow_arr = [];
           srow_arr.push(date);
@@ -132,7 +132,6 @@ export default Ember.Route.extend({
               allfilled=true;
               var lastMonthsSale = sales[1];
               insideArray.push(lastMonthsSale);
-
             }
           });
 
@@ -181,8 +180,9 @@ export default Ember.Route.extend({
       console.log(currentDate);
 
     }
-
-    this.set('show', true);
+    debugger;
+    //
+    // this.set('show', true);
   },
 
 
