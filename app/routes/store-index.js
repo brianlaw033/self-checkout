@@ -5,6 +5,15 @@ export default Ember.Route.extend({
     return this.store.findRecord('user', params.user_id);
   },
   actions: {
+    update(shop, params) {
+      Object.keys(params).forEach(function(key) {
+        if(params[key]!==undefined) {
+          shop.set(key,params[key]);
+        }
+        shop.save();
+      });
+    },
+
     saveProduct(params) {
       var newProduct = this.store.createRecord('product', params);
       var shop = params.shop;
