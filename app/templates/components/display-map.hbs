@@ -1,0 +1,14 @@
+<h1>Hi There!</h1>
+
+
+<div class="container display-map">
+  <!-- <button {{action 'showMap'}} class="btn btn-success">Show Map</button> -->
+  <div id="floating-panel">
+    <form {{action "geocodeAddress" on="submit"}}>
+      {{input value=address type="text" placeholder="(option)location"}}
+      <button  class="btn btn-primary">Find</button>
+      <button {{action 'myLocation'}} class="btn btn-primary glyphicon glyphicon-screenshot"></button>
+    </form>
+  </div>
+  <div id="the-map"></div>
+</div>

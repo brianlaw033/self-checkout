@@ -13,11 +13,6 @@ export default Ember.Component.extend({
     addToCart(item) {
       this.get('shoppingCart').add(item);
     },
-
-    logout(){
-      this.get('login').logout();
-    },
-
     toggleModal() {
       this.get('findProduct').toggleModal();
     }

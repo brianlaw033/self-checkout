@@ -7,6 +7,10 @@ export default Ember.Component.extend({
         var username =  this.get('username');
         var password =  this.get('password');
         return this.get('login').checkType(username, password);
+    },
+    continueAs(){
+      return this.get('login').initializeFromCookie();
     }
   }
+
 });
