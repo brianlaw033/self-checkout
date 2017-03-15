@@ -1,6 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
+  login: Ember.inject.service(),
   model(params) {
     return Ember.RSVP.hash({
       sales:this.store.findAll('sale'),
