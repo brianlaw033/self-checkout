@@ -1,3 +1,5 @@
 {{#each model as |shop|}}
 <button class='btn'>{{#link-to 'customer-index' shop.id}}{{shop.shopname}}{{/link-to}}</button>
 {{/each}}
+
+{{display-map}}
