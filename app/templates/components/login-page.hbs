@@ -1,3 +1,4 @@
+{{#unless login.logedin}}
   <div class='text-center login'>
     {{input value=username id='username' placeholder='Username'}}<br />
     {{input type='password' value=password id='password' placeholder='Password'}}<br />
@@ -5,3 +6,16 @@
     {{#link-to 'sign-up'}}<button class='btn'>Sign up</button>{{/link-to}}
     <h3></h3>
   </div>
+{{/unless}}
+
+{{#if login.logedin}}
+  {{#modal-dialog close="toggleModal" targetAttachment="center" translucentOverlay=true}}
+    <div class='text-center'>
+      <p>
+      Redirecting page...<br />
+      If not, click the button below to continue<br />
+      </p>
+      <button class='btn' {{action 'continueAs'}}>Continue to Shopping</button>
+    </div>
+  {{/modal-dialog}}
+{{/if}}

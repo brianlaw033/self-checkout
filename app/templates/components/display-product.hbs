@@ -1,9 +1,3 @@
-{{#if login.logedin}}
-  <button class='btn' {{action 'logout'}}>Logout</button>
-{{/if}}
-
-Logged in as: {{login.currentUser}}
-
 {{#if login.customer}}
   <div class='container'>
     <form>
@@ -24,7 +18,7 @@ Logged in as: {{login.currentUser}}
   </div>
 {{/if}}
 
-{{#unless login.customer}}
+{{#unless login.logedin}}
   {{#modal-dialog targetAttachment="center" translucentOverlay=true}}
     <div class='text-center'>
       <p>

@@ -1,5 +1,8 @@
-{{#each model as |shop|}}
-<button class='btn'>{{#link-to 'customer-index' shop.id}}{{shop.shopname}}{{/link-to}}</button>
-{{/each}}
-
+{{customer-navbar}}
+<div class='text-center'>
+  <h3>Where are you?</h3>
+  {{#each model as |shop|}}
+  {{#link-to 'customer-index' shop.id}}<button class='btn'>{{shop.shopname}}</button>{{/link-to}}<br />
+  {{/each}}
+</div>
 {{display-map}}
