@@ -98,6 +98,7 @@ export default Ember.Component.extend({
 
     },
     geocodeAddress() {
+      var self = this;
       var geocoder = this.get('map').geocodeAddress();
       var address = this.get('address');
       var requiredMap = this.get('requiredMap');
@@ -105,11 +106,8 @@ export default Ember.Component.extend({
       geocoder.geocode({'address': address+", hong kong"}, function(results, status) {
         if (status === 'OK') {
           requiredMap.setCenter(results[0].geometry.location);
-          // var markerInfo = {
-          //   position: results[0].geometry.location,
-          //   map: requiredMap
-          // };
-          // map.addMarker(markerInfo);
+          self.set('origin', results[0].geometry.location);
+
           var param = {map: requiredMap};
           var infoWindow = map.infoWindow(param);
           infoWindow.setPosition(results[0].geometry.location);
@@ -120,6 +118,7 @@ export default Ember.Component.extend({
       });
     },
     myLocation() {
+      var self = this;
       var requiredMap = this.get('requiredMap');
       var param = {map: requiredMap};
       var infoWindow = this.get('map').infoWindow(param);
@@ -131,6 +130,7 @@ export default Ember.Component.extend({
             lat: position.coords.latitude,
             lng: position.coords.longitude
           };
+          self.set('origin', pos);
 
           infoWindow.setPosition(pos);
           infoWindow.setContent('You are here.');
