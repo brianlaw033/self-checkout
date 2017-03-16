@@ -77,6 +77,9 @@ export default Ember.Component.extend({
                     if (result.distance.value < 50) {
                       var fifty_meter_shops = self.get('map').fifty_meter_shops;
                       fifty_meter_shops.pushObject(shop);
+                    } else if (result.distance.value < 1000) {
+                        var kilo_meter_shops = self.get('map').kilo_meter_shops;
+                        kilo_meter_shops.pushObject(shop);
                     }
                   }
                 });
@@ -98,47 +101,7 @@ export default Ember.Component.extend({
                               'Error: The Geolocation service failed.' :
                               'Error: Your browser doesn\'t support geolocation.');
       };
-
-
-
     },
-
-    // getClosestShops(shops){
-    //   var origin = this.get('origin');
-    //   var self = this;
-    //   var fifty_meter_shops = this.get('map').fifty_meter_shops;
-    //   shops.forEach(function (shop) {
-    //     var location = shop.get('location');
-    //     var geocoder = self.get('map').geocodeAddress();
-    //     geocoder.geocode({'address': location+", hong kong"}, function(results, status) {
-    //       if (status === 'OK') {
-    //         var destination = results[0].geometry.location;
-    //         //get the distance matrix
-    //         var service = self.get('map').DistMatrix();
-    //         service.getDistanceMatrix({
-    //           origins: [origin],
-    //           destinations: [destination],
-    //           travelMode: 'WALKING',
-    //           unitSystem: google.maps.UnitSystem.METRIC,
-    //           avoidHighways: false,
-    //           avoidTolls: false
-    //         }, function(response, status) {
-    //           if (status !== 'OK') {
-    //             alert('Error was: ' + status);
-    //           } else {
-    //             var result = response.rows[0].elements[0];
-    //             if (result.distance.value < 50) {
-    //               var fifty_meter_shops = self.get('map').fifty_meter_shops;
-    //               fifty_meter_shops.pushObject(shop);
-    //             }
-    //           }
-    //         });
-    //       } else {
-    //         alert('Geocode was not successful for the following reason: ' + status);
-    //       }
-    //     });
-    //   });
-    // },
     geocodeAddress() {
       var self = this;
       var geocoder = this.get('map').geocodeAddress();
@@ -184,6 +147,9 @@ export default Ember.Component.extend({
                     if (result.distance.value < 50) {
                       var fifty_meter_shops = self.get('map').fifty_meter_shops;
                       fifty_meter_shops.pushObject(shop);
+                    } else if (result.distance.value < 1000) {
+                        var kilo_meter_shops = self.get('map').kilo_meter_shops;
+                        kilo_meter_shops.pushObject(shop);
                     }
                   }
                 });
@@ -215,6 +181,53 @@ export default Ember.Component.extend({
           infoWindow.setPosition(pos);
           infoWindow.setContent('You are here.');
           requiredMap.setCenter(pos);
+
+          //auto show closest shops
+          var shops = self.get('shops');
+          shops.forEach(function (shop) {
+            var location = shop.get('location');
+            var geocoder = self.get('map').geocodeAddress();
+            geocoder.geocode({'address': location+", hong kong"}, function(results, status) {
+              if (status === 'OK') {
+                var destination = results[0].geometry.location;
+
+                //add Marker for each shop
+                var requiredMap = self.get('requiredMap');
+                var markerInfo = {
+                  position: destination,
+                  map: requiredMap
+                };
+                self.get('map').addMarker(markerInfo);
+
+                //get the distance matrix
+                var origin = self.get('origin');
+                var service = self.get('map').DistMatrix();
+                service.getDistanceMatrix({
+                  origins: [origin],
+                  destinations: [destination],
+                  travelMode: 'WALKING',
+                  unitSystem: google.maps.UnitSystem.METRIC,
+                  avoidHighways: false,
+                  avoidTolls: false
+                }, function(response, status) {
+                  if (status !== 'OK') {
+                    alert('Error was: ' + status);
+                  } else {
+                    var result = response.rows[0].elements[0];
+                    if (result.distance.value < 50) {
+                      var fifty_meter_shops = self.get('map').fifty_meter_shops;
+                      fifty_meter_shops.pushObject(shop);
+                    } else if (result.distance.value < 1000) {
+                        var kilo_meter_shops = self.get('map').kilo_meter_shops;
+                        kilo_meter_shops.pushObject(shop);
+                    }
+                  }
+                });
+              } else {
+                alert('Geocode was not successful for the following reason: ' + status);
+              }
+            });
+          });
         }, function() {
           handleLocationError(true, infoWindow, requiredMap.getCenter());
         });

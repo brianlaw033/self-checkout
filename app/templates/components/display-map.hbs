@@ -8,9 +8,17 @@
   </div>
   <div id="the-map"></div>
   <div id="output">
-    <h4>Get Closest Shops!</h4>
-    {{#each map.fifty_meter_shops as |fifty_meter_shop|}}
-      {{#link-to 'customer-index' fifty_meter_shop.id}}<button class="btn btn-primary">{{fifty_meter_shop.shopname}}</button>{{/link-to}}
-    {{/each}}
+    <div class="closestShop">
+      <h4>Are you here?</h4>
+      {{#each map.fifty_meter_shops as |fifty_meter_shop|}}
+        {{#link-to 'customer-index' fifty_meter_shop.id}}<button class="btn btn-primary">{{fifty_meter_shop.shopname}}</button>{{/link-to}}
+      {{/each}}
+    </div>
+    <div class="walkShop">
+      <h4>Prefer exploring further?</h4>
+      {{#each map.kilo_meter_shops as |kilo_meter_shop|}}
+        {{#link-to 'customer-index' kilo_meter_shop.id}}<button class="btn btn-primary">{{kilo_meter_shop.shopname}}</button>{{/link-to}}
+      {{/each}}
+    </div>
   </div>
 </div>

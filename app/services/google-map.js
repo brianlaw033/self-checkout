@@ -22,5 +22,6 @@ export default Ember.Service.extend({
     this.set('requiredMap', map);
   },
   fifty_meter_shops: [],
+  kilo_meter_shops: [],
 
 });
