@@ -8,7 +8,6 @@ export default Ember.Component.extend({
       var login = this.get('login');
       console.log(login.userId);
       this.sendAction('addsoldItems',shoppingCart_Items, login.person);
-
     }
   }
 });
