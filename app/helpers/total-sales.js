@@ -6,7 +6,7 @@ export function totalSales(params) {
   sales.forEach(function(sale){
     newtotal = newtotal+sale.get('price')*(sale.get('quantity_selected'));
   })
-  return newtotal.toPrecision(4);
+  return Math.round(newtotal);
 }
 
 export default Ember.Helper.helper(totalSales);
