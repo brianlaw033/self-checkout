@@ -13,6 +13,7 @@ export default Ember.Service.extend({
    currentUser: null,
    userId: null,
    userObj: null,
+   hasCreditCard: false,
 
   checkType(username, password){
     const hash = CryptoJS.SHA256(password).toString();
@@ -63,6 +64,21 @@ export default Ember.Service.extend({
     this.set('logedin', false);
     this.get("routing").transitionTo("index");
   },
+
+  checkCreditCard(){
+    var user = this.get('person');
+    var customer = user.get('customer');
+    var card = customer.get('card');
+    var cardId = card.get('id');
+    console.log(cardId);
+    if(cardId != undefined){
+      this.set('hasCreditCard', true)
+    }
+    else {
+      this.set('hasCreditCard', false)
+    }
+  },
+
   initializeFromCookie: function(){
     var self = this;
     var userId = Cookies.get('userId');

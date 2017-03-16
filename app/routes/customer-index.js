@@ -12,7 +12,6 @@ export default Ember.Route.extend({
 
   actions : {
     addsoldItems(soldItems, currentUser){
-      debugger;
       var currentUser = currentUser;
       console.log(currentUser);
       var self = this.store;
@@ -22,7 +21,6 @@ export default Ember.Route.extend({
           newSale.set(some,element.get(some));
         });
         var now = new Date();
-        debugger;
         var curr_year = now.getFullYear();
         var curr_Month = now.getMonth() + 1;
         var curr_date = now.getDate();
