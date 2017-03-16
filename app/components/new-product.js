@@ -15,7 +15,7 @@ export default Ember.Component.extend({
         image: this.get('image'),
         name: this.get('name'),
         price: this.get('price'),
-        quantity_selected: this.get('quantity_selected'),
+        quantity_selected: 0,
         shop: this.get('shop')
       };
       this.set('addNewProduct', false);
