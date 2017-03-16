@@ -16,6 +16,7 @@ export default Ember.Route.extend({
   },
 
   activate: function () {
+    this.set('customerMatching', []);
     var info = this.modelFor(this.routeName);
     var user = info.user;
     var sales = info.sales;
