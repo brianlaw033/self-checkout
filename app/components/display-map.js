@@ -52,10 +52,12 @@ export default Ember.Component.extend({
                               'Error: Your browser doesn\'t support geolocation.');
       };
     },
+
     getClosestShops(shops){
       var origin = this.get('origin');
       var self = this;
       var requiredMap = this.get('requiredMap');
+      var fifty_meter_shops = this.get('map').fifty_meter_shops;
       shops.forEach(function (shop) {
         var location = shop.get('location');
         var geocoder = self.get('map').geocodeAddress();
@@ -76,17 +78,24 @@ export default Ember.Component.extend({
                 alert('Error was: ' + status);
               } else {
                 var result = response.rows[0].elements[0];
-                console.log(result.distance.text);
+                if (result.distance.value < 50) {
+                  var fifty_meter_shops = self.get('map').fifty_meter_shops;
+                  fifty_meter_shops.pushObject(shop);
+                }
               }
             });
           } else {
             alert('Geocode was not successful for the following reason: ' + status);
           }
         });
-
-
       });
 
+
+      for (var i = 0; i < fifty_meter_shops.length; i++) {
+        debugger
+        var test = fifty_meter_shops[i].get('location');
+        console.log(test);
+      }
 
     },
     geocodeAddress() {
