@@ -92,7 +92,6 @@ export default Ember.Component.extend({
 
 
       for (var i = 0; i < fifty_meter_shops.length; i++) {
-        debugger
         var test = fifty_meter_shops[i].get('location');
         console.log(test);
       }
