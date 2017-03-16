@@ -24,15 +24,17 @@ export default Ember.Service.extend({
     var geocoder = this.get('geocodeAddress');
     shops.forEach(function (shop) {
       var location = shop.get('location');
-      console.log(location);
+      debugger
+      geocoder.geocode({'address': location+", hong kong"}, function(results, status) {
+        if (status === 'OK') {
+          //do sth with results[0].geometry.location
+          alert('geocode success');
+        } else {
+          alert('Geocode was not successful for the following reason: ' + status);
+        }
+      });
     });
-    geocoder.geocode({'address': address+", hong kong"}, function(results, status) {
-      if (status === 'OK') {
-        //do sth with results[0].geometry.location
-      } else {
-        alert('Geocode was not successful for the following reason: ' + status);
-      }
-    });
+
 
     //get the distance matrix
     service.getDistanceMatrix({
