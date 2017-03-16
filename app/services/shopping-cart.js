@@ -10,11 +10,12 @@ export default Ember.Service.extend({
     var filterItems = this.get('items').filter(function(currentItem){
       return currentItem.get('id')==item.get('id');
     });
+
     if(filterItems==false){
       this.get('items').pushObject(item);
     }
     var total = this.get('totalprice');
-    this.set('totalprice', parseFloat(total+item.get('price')));
+    this.set('totalprice', Math.round(parseFloat(total+item.get('price'))*100)/100);
     var new_quantity = item.get('quantity_selected')+1;
     item.set('quantity_selected',new_quantity);
     this.set('canpay',true);
@@ -22,7 +23,7 @@ export default Ember.Service.extend({
 
   remove(item){
     var total= this.get('totalprice');
-    this.set('totalprice', parseFloat(total-item.get('price')));
+    this.set('totalprice', Math.round(parseFloat(total-item.get('price'))*100)/100);
     var new_quantity = item.get('quantity_selected')-1;
     item.set('quantity_selected',new_quantity);
     if(item.get('quantity_selected')==0){
