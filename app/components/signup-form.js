@@ -29,10 +29,5 @@ export default Ember.Component.extend({
         var photo = this.get('photo');
         return this.get('signUpService').addShop(shopname, location, photo);
     },
-    submitCustomer(){
-        var name = this.get('name');
-        var location = this.get('location');
-        return this.get('signUpService').addCustomer(name, location);
-    }
   }
 });
