@@ -17,7 +17,10 @@ export default Ember.Service.extend({
   DistMatrix() {
     return new this.googleMaps.DistanceMatrixService;
   },
-  LatLng(latitude, longitude) {
-    return new this.googleMaps.LatLng(latitude, longitude);
-  }
+  requiredMap: null,
+  storeMapInService(map){
+    this.set('requiredMap', map);
+  },
+  fifty_meter_shops: [],
+
 });
