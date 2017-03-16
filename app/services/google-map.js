@@ -21,6 +21,18 @@ export default Ember.Service.extend({
   fifty_meter_shops: [],
 
   getClosestShops(origin, shops) {
+    var geocoder = this.get('geocodeAddress');
+    shops.forEach(function (shop) {
+      var location = shop.get('location');
+      console.log(location);
+    });
+    geocoder.geocode({'address': address+", hong kong"}, function(results, status) {
+      if (status === 'OK') {
+        //do sth with results[0].geometry.location
+      } else {
+        alert('Geocode was not successful for the following reason: ' + status);
+      }
+    });
 
     //get the distance matrix
     service.getDistanceMatrix({

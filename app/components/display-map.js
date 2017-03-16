@@ -2,10 +2,8 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   map: Ember.inject.service('google-map'),
-  locations: null,
   requiredMap: null,
   origin: null,
-  results: null,
   init: function () {
     this._super();
     Ember.run.schedule("afterRender",this,function() {
@@ -26,32 +24,32 @@ export default Ember.Component.extend({
       var requiredMap = this.get('requiredMap');
       var param = {map: requiredMap};
       var infoWindow = this.get('map').infoWindow(param);
-      // //locating our user
-      // // Try HTML5 geolocation.
-      // if (navigator.geolocation) {
-      //   var requiredMap = this.get('requiredMap'); //this line is necessary for solving the scoping problem
-      //   navigator.geolocation.getCurrentPosition(function(position) {
-      //     var pos = {
-      //       lat: position.coords.latitude,
-      //       lng: position.coords.longitude
-      //     };
-      //     self.set('origin', pos);
-      //     infoWindow.setPosition(pos);
-      //     infoWindow.setContent('You are here. ');
-      //     requiredMap.setCenter(pos);
-      //   }, function() {
-      //     handleLocationError(true, infoWindow, requiredMap.getCenter());
-      //   });
-      // } else {
-      //   // Browser doesn't support Geolocation
-      //   handleLocationError(false, infoWindow, requiredMap.getCenter());
-      // };
-      // var handleLocationError = function (browserHasGeolocation, infoWindow, pos) {
-      //   infoWindow.setPosition(pos);
-      //   infoWindow.setContent(browserHasGeolocation ?
-      //                         'Error: The Geolocation service failed.' :
-      //                         'Error: Your browser doesn\'t support geolocation.');
-      // };
+      //locating our user
+      // Try HTML5 geolocation.
+      if (navigator.geolocation) {
+        var requiredMap = this.get('requiredMap'); //this line is necessary for solving the scoping problem
+        navigator.geolocation.getCurrentPosition(function(position) {
+          var pos = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          };
+          self.set('origin', pos);
+          infoWindow.setPosition(pos);
+          infoWindow.setContent('You are here. ');
+          requiredMap.setCenter(pos);
+        }, function() {
+          handleLocationError(true, infoWindow, requiredMap.getCenter());
+        });
+      } else {
+        // Browser doesn't support Geolocation
+        handleLocationError(false, infoWindow, requiredMap.getCenter());
+      };
+      var handleLocationError = function (browserHasGeolocation, infoWindow, pos) {
+        infoWindow.setPosition(pos);
+        infoWindow.setContent(browserHasGeolocation ?
+                              'Error: The Geolocation service failed.' :
+                              'Error: Your browser doesn\'t support geolocation.');
+      };
       //
       //
       // //adding markers for the stores
