@@ -26,66 +26,70 @@ export default Ember.Component.extend({
       var requiredMap = this.get('requiredMap');
       var param = {map: requiredMap};
       var infoWindow = this.get('map').infoWindow(param);
-      //locating our user
-      // Try HTML5 geolocation.
-      if (navigator.geolocation) {
-        var requiredMap = this.get('requiredMap'); //this line is necessary for solving the scoping problem
-        navigator.geolocation.getCurrentPosition(function(position) {
-          var pos = {
-            lat: position.coords.latitude,
-            lng: position.coords.longitude
-          };
-          self.set('origin', pos);
-          infoWindow.setPosition(pos);
-          infoWindow.setContent('You are here. ');
-          requiredMap.setCenter(pos);
-        }, function() {
-          handleLocationError(true, infoWindow, requiredMap.getCenter());
-        });
-      } else {
-        // Browser doesn't support Geolocation
-        handleLocationError(false, infoWindow, requiredMap.getCenter());
-      };
-      var handleLocationError = function (browserHasGeolocation, infoWindow, pos) {
-        infoWindow.setPosition(pos);
-        infoWindow.setContent(browserHasGeolocation ?
-                              'Error: The Geolocation service failed.' :
-                              'Error: Your browser doesn\'t support geolocation.');
-      };
-
-
-      //adding markers for the stores
-      var map = this.get('map');
-      var requiredMap = this.get('requiredMap');
-      var locations = [
-        {lat: 22.315037, lng: 114.189587},
-        {lat: 22.313630, lng: 114.185763},
-        {lat: 22.312061, lng: 114.189314},
-        {lat: 22.309151, lng: 114.188624},
-        {lat: 22.309391, lng: 114.191396},
-        {lat: 22.308605, lng: 114.189800},
-        {lat: 22.307778, lng: 114.184810},
-        {lat: 22.307498, lng: 114.186226},
-        {lat: 22.307066, lng: 114.186114},
-        {lat: 22.278106, lng: 114.170497},
-        {lat: 22.278079, lng: 114.171006},
-        {lat: 22.277100, lng: 114.170513},
-        {lat: 22.276903, lng: 114.168803},
-        {lat: 22.276031, lng: 114.170348},
-        {lat: 22.277612, lng: 114.171957}
-      ];
-      this.set('locations', locations);
-      locations.map(function(location, i) {
-        // var param = {map: requiredMap};
-        // var infoWindow = map.infoWindow(param);
-        // infoWindow.setPosition(location);
-        // infoWindow.setContent(String(i));
-        var markerInfo = {
-          position: location,
-          map: requiredMap
-        };
-        map.addMarker(markerInfo);
-      });
+      // //locating our user
+      // // Try HTML5 geolocation.
+      // if (navigator.geolocation) {
+      //   var requiredMap = this.get('requiredMap'); //this line is necessary for solving the scoping problem
+      //   navigator.geolocation.getCurrentPosition(function(position) {
+      //     var pos = {
+      //       lat: position.coords.latitude,
+      //       lng: position.coords.longitude
+      //     };
+      //     self.set('origin', pos);
+      //     infoWindow.setPosition(pos);
+      //     infoWindow.setContent('You are here. ');
+      //     requiredMap.setCenter(pos);
+      //   }, function() {
+      //     handleLocationError(true, infoWindow, requiredMap.getCenter());
+      //   });
+      // } else {
+      //   // Browser doesn't support Geolocation
+      //   handleLocationError(false, infoWindow, requiredMap.getCenter());
+      // };
+      // var handleLocationError = function (browserHasGeolocation, infoWindow, pos) {
+      //   infoWindow.setPosition(pos);
+      //   infoWindow.setContent(browserHasGeolocation ?
+      //                         'Error: The Geolocation service failed.' :
+      //                         'Error: Your browser doesn\'t support geolocation.');
+      // };
+      //
+      //
+      // //adding markers for the stores
+      // var map = this.get('map');
+      // var requiredMap = this.get('requiredMap');
+      // var locations = [
+      //   {lat: 22.315037, lng: 114.189587},
+      //   {lat: 22.313630, lng: 114.185763},
+      //   {lat: 22.312061, lng: 114.189314},
+      //   {lat: 22.309151, lng: 114.188624},
+      //   {lat: 22.309391, lng: 114.191396},
+      //   {lat: 22.308605, lng: 114.189800},
+      //   {lat: 22.307778, lng: 114.184810},
+      //   {lat: 22.307498, lng: 114.186226},
+      //   {lat: 22.307066, lng: 114.186114},
+      //   {lat: 22.278106, lng: 114.170497},
+      //   {lat: 22.278079, lng: 114.171006},
+      //   {lat: 22.277100, lng: 114.170513},
+      //   {lat: 22.276903, lng: 114.168803},
+      //   {lat: 22.276031, lng: 114.170348},
+      //   {lat: 22.277612, lng: 114.171957}
+      // ];
+      // this.set('locations', locations);
+      // locations.map(function(location, i) {
+      //   // var param = {map: requiredMap};
+      //   // var infoWindow = map.infoWindow(param);
+      //   // infoWindow.setPosition(location);
+      //   // infoWindow.setContent(String(i));
+      //   var markerInfo = {
+      //     position: location,
+      //     map: requiredMap
+      //   };
+      //   map.addMarker(markerInfo);
+      // });
+    },
+    getClosestShops(shops){
+      var origin = this.get('origin');
+      this.get('map').getClosestShops(origin, shops);
     },
     geocodeAddress() {
       var geocoder = this.get('map').geocodeAddress();
@@ -139,38 +143,6 @@ export default Ember.Component.extend({
                               'Error: The Geolocation service failed.' :
                               'Error: Your browser doesn\'t support geolocation.');
       };
-    },
-
-    getDistance() {
-      var self = this;
-      var map = this.get('map');
-      var service = this.get('map').DistMatrix();
-      var origin = this.get('origin');
-      var locations = this.get('locations');
-      var requiredMap = this.get('requiredMap');
-      var distance_text = [];
-      //get the distance matrix
-      service.getDistanceMatrix({
-        origins: [origin],
-        destinations: locations,
-        travelMode: 'WALKING',
-        unitSystem: google.maps.UnitSystem.METRIC,
-        avoidHighways: false,
-        avoidTolls: false
-      }, function(response, status) {
-        if (status !== 'OK') {
-          alert('Error was: ' + status);
-        } else {
-          var originList = response.originAddresses;
-          var destinationList = response.destinationAddresses;
-          var results = response.rows[0].elements;
-          for (var j = 0; j < results.length; j++) {
-            distance_text[j] = String(results[j].distance.text);
-          }
-          debugger;
-          self.set('results', distance_text);
-        }
-      });
     }
   }
 });

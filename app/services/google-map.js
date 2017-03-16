@@ -17,7 +17,31 @@ export default Ember.Service.extend({
   DistMatrix() {
     return new this.googleMaps.DistanceMatrixService;
   },
-  LatLng(latitude, longitude) {
-    return new this.googleMaps.LatLng(latitude, longitude);
+
+  fifty_meter_shops: [],
+
+  getClosestShops(origin, shops) {
+
+    //get the distance matrix
+    service.getDistanceMatrix({
+      origins: [origin],
+      destinations: locations,
+      travelMode: 'WALKING',
+      unitSystem: google.maps.UnitSystem.METRIC,
+      avoidHighways: false,
+      avoidTolls: false
+    }, function(response, status) {
+      if (status !== 'OK') {
+        alert('Error was: ' + status);
+      } else {
+        var originList = response.originAddresses;
+        var destinationList = response.destinationAddresses;
+        var results = response.rows[0].elements;
+        for (var j = 0; j < results.length; j++) {
+          distance_text[j] = String(results[j].distance.text);
+        }
+      }
+    });
   }
+
 });
