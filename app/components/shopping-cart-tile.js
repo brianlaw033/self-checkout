@@ -3,8 +3,7 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   shoppingCart: Ember.inject.service(),
 
-  var itemPrice2 = +((price / listprice).toFixed(2));
-  var itemPrice = parseInt(itemPrice2);
+  // itemPrice : +((this.get('item').price).toFixed(2)),
 
   actions: {
     removeItem(item) {
