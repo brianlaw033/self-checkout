@@ -67,9 +67,11 @@ export default Ember.Service.extend({
     debugger;
     var self = this;
     var userId = Cookies.get('userId');
-    var person = this.get('store').findRecord('user', userId).then(function(user){
-      self.set('person', user)
-    });
+    if(userId != undefined){
+      var person = this.get('store').findRecord('user', userId).then(function(user){
+        self.set('person', user)
+      });
+    }
     var type = Cookies.get('type');
     this.set('userId', userId);
     var currentUser = Cookies.get('currentUser');
