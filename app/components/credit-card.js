@@ -17,7 +17,6 @@ export default Ember.Component.extend({
       this.set('addCreditCard', false);
     },
     saveCard (user) {
-      debugger;
       var customerObject = user.get('customer');
       var customerId = customerObject;
       var params = {
