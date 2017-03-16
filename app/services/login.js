@@ -70,7 +70,7 @@ export default Ember.Service.extend({
     var customer = user.get('customer');
     var card = customer.get('card');
     var cardId = card.get('id');
-    console.log(cardId);
+    Cookies.set('cardId', cardId);
     if(cardId != undefined){
       this.set('hasCreditCard', true)
     }
@@ -99,6 +99,11 @@ export default Ember.Service.extend({
             self.get("routing").transitionTo("store-index", [userId]);
           }
         }else if (type === 'customer'){
+          if(Cookies.get('cardID') != undefined){
+            self.set('hasCreditCard', true)
+          }else{
+            self.set('hasCreditCard', false)
+          }
           self.set('customer', true);
           if(self.get('routing').router.currentPath == 'index'){
             self.get("routing").transitionTo("select-shop");
