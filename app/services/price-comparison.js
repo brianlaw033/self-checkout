@@ -17,6 +17,7 @@ export default Ember.Service.extend(FindQuery, {
       products.forEach(function(product){
         var tempShop = product.get('shop');
         var shopId = tempShop.get('id');
+        console.log(shopId);
         var price = product.get('price');
         var getShop = self.get('store').findRecord('shop', shopId)
         .then(function(shops){

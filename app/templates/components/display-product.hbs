@@ -20,5 +20,16 @@
         </div>
       {{/modal-dialog}}
     {{/if}}
+
+    {{#if findProduct.notFound}}
+      {{#modal-dialog close="toggleModal" targetAttachment="center" translucentOverlay=true}}
+          <div class='text-center'>
+            <p>
+              Barcode Not Found in this store. Please Try Again.
+            </p>
+            <button class='btn'{{action "toggleModal"}}>Close</button>
+          </div>
+      {{/modal-dialog}}
+    {{/if}}
   </div>
 {{/if}}
