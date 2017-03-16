@@ -5,8 +5,20 @@
 
 //General
 body{
+  background: url('http://i.imgur.com/X35zVxX.jpg') no-repeat center center fixed;
   background-color: #282828;
   color: white;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+h1{
+  font-size: 50px;
+  font-weight: 200;
+  color: #173568;
+  padding: 0px 20px 10px 20px;
 }
 
 .btn{
@@ -19,16 +31,27 @@ body{
   opacity: 0.8;
 }
 
+.redirect{
+  color: black;
+}
+
+.marginBottom20{
+  padding-bottom: 20px;
+}
+
 //Index Page
-.index{
+
+#index{
   padding-top: 15%;
   padding-bottom: 20px;
+}
+
+#brand{
   font-family: 'Monoton', cursive;
-  color: white;
 }
 
 .login{
-  font-size: 30px;
+  font-size: 25px;
   color: #282828;
 }
 
@@ -170,8 +193,8 @@ img {
 }
 
 #the-map {
-    height: 600px;
-    width: 800px;
+    height: 300px;
+    width: 300px;
   }
 
 #output {
