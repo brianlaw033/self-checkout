@@ -1,5 +1,4 @@
 <div class="container display-map">
-  <!-- <button {{action 'showMap'}} class="btn btn-success">Show Map</button> -->
   <div id="floating-panel">
     <form {{action "geocodeAddress" on="submit"}}>
       {{input value=address type="text" placeholder="(option)location"}}
@@ -9,9 +8,9 @@
   </div>
   <div id="the-map"></div>
   <div id="output">
-    <button {{action "getClosestShops" shops}} class="btn btn-success">Get Closest Shops</button>
+    <h4>Get Closest Shops!</h4>
     {{#each map.fifty_meter_shops as |fifty_meter_shop|}}
-      {{fifty_meter_shop.shopname}}
+      {{#link-to 'customer-index' fifty_meter_shop.id}}<button class="btn btn-primary">{{fifty_meter_shop.shopname}}</button>{{/link-to}}
     {{/each}}
   </div>
 </div>
