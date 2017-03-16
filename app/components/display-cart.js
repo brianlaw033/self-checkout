@@ -6,8 +6,12 @@ export default Ember.Component.extend({
   actions:{
     addsoldItems(shoppingCart_Items){
       var login = this.get('login');
-      console.log(login.userId);
-      this.sendAction('addsoldItems',shoppingCart_Items, login.person);
+      this.get('login').checkCreditCard();
+      var hasCreditCard = this.get('login').hasCreditCard;
+      if(hasCreditCard){
+        this.get('shoppingCart').clearCart();
+        this.sendAction('addsoldItems',shoppingCart_Items, login.person);
+      }
     }
   }
 });

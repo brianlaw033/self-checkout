@@ -29,5 +29,10 @@ export default Ember.Service.extend({
       this.get('items').removeObject(item);
       this.set('canpay',false);
     }
+  },
+
+  clearCart(){
+    this.set('items', []);
+    this.set('totalprice',0);
   }
 });

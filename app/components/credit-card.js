@@ -2,32 +2,30 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   login: Ember.inject.service(),
+  shoppingCart: Ember.inject.service(),
   model(params) {
-    return this.store.findRecord('card', params.user_id)
+    return this.store.findRecord('card', params.user_id);
+    return this.store.findRecord('customer', login.user_id);
   },
 
-  // if (customer) {
-    addCreditCard: true,
-  // } else {
-  //   addCreditCard: false;
-  // }
-
   actions: {
-    cardFormShow () {
-      this.set('addCreditCard', false);
-    },
     saveCard (user) {
       var customerObject = user.get('customer');
       var customerId = customerObject;
       var params = {
         fullname: this.get('fullname'),
-        number: parseInt(this.get('number')),
+        number: this.get('number'),
         date: this.get('date'),
-        security: parseInt(this.get('security')),
+        security: this.get('security'),
         customer: customerId
       };
-      this.set('addCreditCard', false);
       this.sendAction('saveCard', params);
+      this.send('addsoldItems');
+    },
+    addsoldItems(shoppingCart_Items){
+      var login = this.get('login');
+      this.get('shoppingCart').clearCart();
+      this.sendAction('addsoldItems',shoppingCart_Items, login.person);
     }
   }
 });
