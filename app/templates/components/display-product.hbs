@@ -13,6 +13,11 @@
           ${{findProduct.display.price}}<br />
           <button class='btn-success'{{action 'addToCart' findProduct.display}}>Add to Cart</button>
         </div>
+        <div>
+          {{#each priceComparison.tempProducts as |product|}}
+            {{product}}
+          {{/each}}
+        </div>
       {{/modal-dialog}}
     {{/if}}
   </div>

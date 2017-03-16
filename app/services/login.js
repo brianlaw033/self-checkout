@@ -64,8 +64,12 @@ export default Ember.Service.extend({
     this.get("routing").transitionTo("index");
   },
   initializeFromCookie: function(){
+    debugger;
     var self = this;
     var userId = Cookies.get('userId');
+    var person = this.get('store').findRecord('user', userId).then(function(user){
+      self.set('person', user)
+    });
     var type = Cookies.get('type');
     this.set('userId', userId);
     var currentUser = Cookies.get('currentUser');
