@@ -4,7 +4,7 @@ export default Ember.Service.extend({
   items: [],
 
   canpay: false,
-  totalprice: 0,
+  totalprice: parseFloat(0),
 
   add(item){
     var filterItems = this.get('items').filter(function(currentItem){
@@ -14,7 +14,7 @@ export default Ember.Service.extend({
       this.get('items').pushObject(item);
     }
     var total = this.get('totalprice');
-    this.set('totalprice', total+item.get('price'));
+    this.set('totalprice', parseFloat(total+item.get('price')));
     var new_quantity = item.get('quantity_selected')+1;
     item.set('quantity_selected',new_quantity);
     this.set('canpay',true);
@@ -22,7 +22,7 @@ export default Ember.Service.extend({
 
   remove(item){
     var total= this.get('totalprice');
-    this.set('totalprice', total-item.get('price'));
+    this.set('totalprice', parseFloat(total-item.get('price')));
     var new_quantity = item.get('quantity_selected')-1;
     item.set('quantity_selected',new_quantity);
     if(item.get('quantity_selected')==0){
