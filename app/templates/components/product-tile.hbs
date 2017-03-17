@@ -1,11 +1,10 @@
 {{#if login.seller}}
-  <h1>{{product.name}}</h1>
 
-  <hr>
-
-  <img src={{product.image}} alt={{product.title}}>
-
-  <h2>{{product.description}}</h2>
+  <div id="img_tile"><img src={{product.image}} alt={{product.title}}></div>
+  <div id="prod_info">
+    <h4>{{product.name}}</h4>
+    <h4>HKD {{product.price}}</h4>
+  </div>
 
   {{update-product product=product update="update"}}
 
