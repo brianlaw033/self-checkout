@@ -39,13 +39,14 @@ export default Ember.Service.extend({
                 self.set('seller', true);
                 self.get("routing").transitionTo("store-index", [temp.get('id')]);
              }else if (temp.get('type') === 'customer'){
-               debugger;
                 self.set('currentUser', temp.get('username'));
                 self.set('userId', temp.get('id'));
                 var customer = temp.get('customer');
+                console.log(customer.get('id'))
                 var creditCard = customer.get('card');
                 var ccId = creditCard.get('id');
-                Cookies.set('cardId', creditCard);
+                console.log(ccId);
+                Cookies.set('cardId', ccId);
                 Cookies.set('userId', temp.get('id'));
                 Cookies.set('type', temp.get('type'));
                 Cookies.set('currentUser', temp.get('username'));
