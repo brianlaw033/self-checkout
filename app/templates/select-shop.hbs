@@ -1,10 +1,10 @@
 {{customer-navbar}}
-<div class='text-center'>
+<!-- <div class='text-center'>
   <h3>Where are you?</h3>
   {{#each model as |shop|}}
   {{#link-to 'customer-index' shop.id}}<button class='btn'>{{shop.shopname}}</button>{{/link-to}}<br />
   {{/each}}
-</div>
+</div> -->
 {{display-map shops=model}}
 
 {{redirect-tool}}
