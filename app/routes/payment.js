@@ -20,6 +20,7 @@ export default Ember.Route.extend({
     addsoldItems(soldItems, currentUser){
       var currentUser = currentUser;
       console.log(currentUser);
+      var selfThis = this;
       var self = this.store;
       soldItems.forEach(function(element){
         var newSale = self.createRecord('sale');
@@ -37,6 +38,10 @@ export default Ember.Route.extend({
         newSale.set('month',curr_Month);
         newSale.set('day',curr_date);
         newSale.save();
+        alert('Payment Succesful!')
+        Ember.run.later((function(){
+          selfThis.transitionTo("select-shop");
+        }), 2000);
       });
     }
   }
