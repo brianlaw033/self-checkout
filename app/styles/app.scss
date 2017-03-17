@@ -1,13 +1,15 @@
 @import "ember-modal-dialog/ember-modal-structure";
 @import "ember-modal-dialog/ember-modal-appearance";
 @import "ember-bootstrap/bootstrap";
-@import url('https://fonts.googleapis.com/css?family=Monoton');
+@import url('https://fonts.googleapis.com/css?family=Monoton|Poiret+One');
 
 //General
 body{
   background: url('http://i.imgur.com/X35zVxX.jpg') no-repeat center center fixed;
   background-color: #282828;
   color: white;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue",
+    Helvetica, Arial, "Lucida Grande", sans-serif;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -19,6 +21,10 @@ h1{
   font-weight: 200;
   color: #173568;
   padding: 0px 20px 10px 20px;
+}
+
+.blackFont{
+  color: black;
 }
 
 .btn{
@@ -65,6 +71,18 @@ h1{
 
 .logout:hover{
   opacity: 1;
+}
+
+// select-shop
+.storeSelect{
+  width: 80%;
+  height: 50px;
+  font-size: 15px;
+}
+
+.display-map{
+  padding-top: 30px;
+  padding-bottom: 50px;
 }
 
 //Customer Index
@@ -197,11 +215,10 @@ img {
 }
 
 #the-map {
-    height: 300px;
-    width: 300px;
+    height: 400px;
+    width: 400px;
   }
 
 #output {
   min-height: 100px;
-  border: 1px dashed red;
 }
