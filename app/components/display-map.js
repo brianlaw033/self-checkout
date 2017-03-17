@@ -2,8 +2,8 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   map: Ember.inject.service('google-map'),
-  requiredMap: null,
-  origin: null,
+  // requiredMap: null,
+  // origin: null,
   init: function () {
     this._super();
     Ember.run.schedule("afterRender",this,function() {
@@ -20,22 +20,24 @@ export default Ember.Component.extend({
         center: defaultLocation,
         zoom: 15
       };
-      this.set('requiredMap', this.get('map').initMap(container, options));
-      var requiredMap = this.get('requiredMap');
+      this.get('map').initMap(container, options);
+      var requiredMap = this.get('map').initMap(container, options);
+      // this.set('requiredMap', this.get('map').initMap(container, options));
+      // var requiredMap = this.get('requiredMap');
       this.get('map').storeMapInService(requiredMap);
       var param = {map: requiredMap};
       var infoWindow = this.get('map').infoWindow(param);
       //locating our user
       // Try HTML5 geolocation.
       if (navigator.geolocation) {
-        var requiredMap = this.get('requiredMap'); //this line is necessary for solving the scoping problem
+        var requiredMap = this.get('map').requiredMap; //this line is necessary for solving the scoping problem
         navigator.geolocation.getCurrentPosition(function(position) {
           //setting origin
           var pos = {
             lat: position.coords.latitude,
             lng: position.coords.longitude
           };
-          self.set('origin', pos);
+          self.get('map').setOrigin(pos);
 
           //add 'You are here'
           infoWindow.setPosition(pos);
@@ -52,7 +54,7 @@ export default Ember.Component.extend({
                 var destination = results[0].geometry.location;
 
                 //add Marker for each shop
-                var requiredMap = self.get('requiredMap');
+                var requiredMap = self.get('map').requiredMap;
                 var markerInfo = {
                   position: destination,
                   map: requiredMap
@@ -60,7 +62,7 @@ export default Ember.Component.extend({
                 self.get('map').addMarker(markerInfo);
 
                 //get the distance matrix
-                var origin = self.get('origin');
+                var origin = self.get('map').origin;
                 var service = self.get('map').DistMatrix();
                 service.getDistanceMatrix({
                   origins: [origin],
@@ -93,6 +95,7 @@ export default Ember.Component.extend({
         });
       } else {
         // Browser doesn't support Geolocation
+        var requiredMap = self.get('map').requiredMap;
         handleLocationError(false, infoWindow, requiredMap.getCenter());
       };
       var handleLocationError = function (browserHasGeolocation, infoWindow, pos) {
@@ -106,19 +109,22 @@ export default Ember.Component.extend({
       var self = this;
       var geocoder = this.get('map').geocodeAddress();
       var address = this.get('address');
-      var requiredMap = this.get('requiredMap');
+      // var requiredMap = this.get('requiredMap');
       var map = this.get('map');
       geocoder.geocode({'address': address+", hong kong"}, function(results, status) {
         if (status === 'OK') {
           //setting origin
+          var requiredMap = self.get('map').requiredMap;
           requiredMap.setCenter(results[0].geometry.location);
-          self.set('origin', results[0].geometry.location);
+          self.get('map').setOrigin(results[0].geometry.location);
+          // self.set('origin', results[0].geometry.location);
 
           //adding 'user LatLng'
           var param = {map: requiredMap};
           var infoWindow = map.infoWindow(param);
           infoWindow.setPosition(results[0].geometry.location);
-          infoWindow.setContent(String(results[0].geometry.location));
+          infoWindow.setContent('Your search result.');
+          // infoWindow.setContent(String(results[0].geometry.location));
 
           //auto show closest shop
           var shops = self.get('shops');
@@ -130,7 +136,7 @@ export default Ember.Component.extend({
               if (status === 'OK') {
                 var destination = results[0].geometry.location;
                 //get the distance matrix
-                var origin = self.get('origin');
+                var origin = self.get('map').origin;
                 var service = self.get('map').DistMatrix();
                 service.getDistanceMatrix({
                   origins: [origin],
@@ -165,9 +171,10 @@ export default Ember.Component.extend({
     },
     myLocation() {
       var self = this;
-      var requiredMap = this.get('requiredMap');
-      var param = {map: requiredMap};
-      var infoWindow = this.get('map').infoWindow(param);
+      // var requiredMap = this.get('requiredMap');
+      // var requiredMap = this.get('map').requiredMap;
+      // var param = {map: requiredMap};
+      // var infoWindow = this.get('map').infoWindow(param);
 
       // Try HTML5 geolocation.
       if (navigator.geolocation) {
@@ -176,10 +183,13 @@ export default Ember.Component.extend({
             lat: position.coords.latitude,
             lng: position.coords.longitude
           };
-          self.set('origin', pos);
+          self.get('map').setOrigin(pos);
 
+          var requiredMap = self.get('map').requiredMap;
+          var param = {map: requiredMap};
+          var infoWindow = self.get('map').infoWindow(param);
           infoWindow.setPosition(pos);
-          infoWindow.setContent('You are here.');
+          infoWindow.setContent('You are here now.');
           requiredMap.setCenter(pos);
 
           //auto show closest shops
@@ -192,7 +202,7 @@ export default Ember.Component.extend({
                 var destination = results[0].geometry.location;
 
                 //add Marker for each shop
-                var requiredMap = self.get('requiredMap');
+                var requiredMap = self.get('map').requiredMap;
                 var markerInfo = {
                   position: destination,
                   map: requiredMap
@@ -200,7 +210,7 @@ export default Ember.Component.extend({
                 self.get('map').addMarker(markerInfo);
 
                 //get the distance matrix
-                var origin = self.get('origin');
+                var origin = self.get('map').origin;
                 var service = self.get('map').DistMatrix();
                 service.getDistanceMatrix({
                   origins: [origin],
@@ -233,6 +243,7 @@ export default Ember.Component.extend({
         });
       } else {
         // Browser doesn't support Geolocation
+        var requiredMap = self.get('map').requiredMap;
         handleLocationError(false, infoWindow, requiredMap.getCenter());
       };
 

@@ -21,6 +21,10 @@ export default Ember.Service.extend({
   storeMapInService(map){
     this.set('requiredMap', map);
   },
+  origin: null,
+  setOrigin(origin){
+    this.set('origin', origin);
+  },
   fifty_meter_shops: [],
   kilo_meter_shops: [],
 

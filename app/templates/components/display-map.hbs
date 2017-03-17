@@ -15,7 +15,7 @@
   </div>
 
   <div id="floating-panel" class='col-sm-6'>
-    <form {{action "geocodeAddress" on="submit"}}>
+    <form class='blackFont'{{action "geocodeAddress" on="submit"}}>
       {{input value=address type="text" placeholder="(option)location"}}
       <button  class="btn btn-primary">Find</button>
       <button {{action 'myLocation'}} class="btn btn-primary glyphicon glyphicon-screenshot"></button>
