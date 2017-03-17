@@ -1,14 +1,19 @@
-
 {{store-navbar}}
-<div class="container store-index-hbs">
+<div class="container thumbnail">
   {{shop-info shop=model.shop}}
   {{update-shop shop=model.shop update="update"}}
 
-  {{#each model.shop.products as |product|}}
-    {{product-tile product=product}}
-  {{/each}}
+  <br><br>
+
+
+    {{#each model.shop.products as |product|}}
+        <div id="tile">{{product-tile product=product}}</div>
+    {{/each}}
+
 
   {{new-product shop=model.shop saveProduct="saveProduct"}}
 </div>
 
 {{redirect-tool}}
+
+<br><br><br><br>
