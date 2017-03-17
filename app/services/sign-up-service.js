@@ -22,25 +22,29 @@ export default Ember.Service.extend({
                          };
                          var newUser = self.get('store').createRecord('user', params);
                          newUser.save().then(function(){
+                           self.set('b4Submit', false);
                            return self.get('store').query('user',{
                              orderBy: 'username',
                              equalTo:  self.get('tempUsername')
                            }).then(function(users){
                              var user = users.get('firstObject');
-                             var params = {
-                               user: user
+                             if(type == 'customer'){
+                               var params = {
+                                 user: user
+                               }
+                               var newCustomer = self.get('store').createRecord('customer', params);
+                               var tempUser = params.user;
+                               tempUser.set('customer',newCustomer);
+                               newCustomer.save().then(function(){
+                                 return tempUser.save();
+                               });
                              }
-                             var newCustomer = self.get('store').createRecord('customer', params);
-                             var tempUser = params.user;
-                             tempUser.set('customer',newCustomer);
-                             newCustomer.save().then(function(){
-                               return tempUser.save();
-                             });
                            })
                        })
                          if(type != 'seller'){
                            self.set('customer', true);
                            self.set('tempUsername', username);
+                           self.set('b4Submit', false);
                            self.get("routing").transitionTo("index");
                          }else{
                            self.set('seller', true);
@@ -81,6 +85,7 @@ export default Ember.Service.extend({
       newShop.save().then(function(){
         return tempUser.save();
       });
+      self.set('b4Submit', false);
       self.get("routing").transitionTo("index");
     })
   },
