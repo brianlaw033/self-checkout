@@ -8,6 +8,8 @@ export default Ember.Component.extend({
       var login = this.get('login');
       this.get('login').checkCreditCard();
       var hasCreditCard = this.get('login').hasCreditCard;
+      debugger;
+      console.log(hasCreditCard);
       if(hasCreditCard){
         this.get('shoppingCart').clearCart();
         this.sendAction('addsoldItems',shoppingCart_Items, login.person);

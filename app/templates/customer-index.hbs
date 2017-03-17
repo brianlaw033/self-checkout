@@ -1,5 +1,10 @@
 {{customer-navbar}}
-{{display-product params=params}}
-{{display-cart product=product addsoldItems="addsoldItems"}}
-
+<div class='thumbnail container displayProduct'>
+  <div class='col-xs-7'>
+    {{display-product params=params}}
+  </div>
+  <div class='col-xs-5 text-center'>
+    {{display-cart product=product addsoldItems="addsoldItems"}}
+  </div>
+</div>
 {{redirect-tool}}
