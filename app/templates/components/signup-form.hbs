@@ -4,7 +4,8 @@
       {{input value=username id='username' placeholder='Email Address'}}<br />
       {{input type='password' value=password id='password' placeholder='Enter your Password'}}<br />
       {{input type='password' value=again id='again' placeholder='Enter your Password Again'}}<br />
-      <select onchange={{action "selectType" value="target.value"}}>
+      <span class="blackFont select-user-type"><Strong>Select User Type: </Strong></span>
+      <select  class="select-user-type" onchange={{action "selectType" value="target.value"}}>
         <option></option>
         {{#each login.userType as |type|}}
           <option value={{type}}>{{type}}</option>

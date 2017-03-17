@@ -73,6 +73,29 @@ h1{
   opacity: 1;
 }
 
+.sign-up-hbs {
+  background-color: white;
+  border-radius: 10px;
+  width: 500px;
+  padding: 20px;
+  text-align: center;
+  margin-top: 20%;
+  margin-left: auto;
+  margin-right: auto;
+
+  input {
+    margin: 2px auto;
+    height: 35px;
+    width: 250px;
+    color: black;
+  }
+}
+
+.select-user-type {
+  margin: 3px;
+  width: 120px;
+}
+
 // select-shop
 .storeSelect{
   width: 80%;
