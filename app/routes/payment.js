@@ -41,7 +41,7 @@ export default Ember.Route.extend({
         alert('Payment Succesful!')
         Ember.run.later((function(){
           selfThis.transitionTo("select-shop");
-        }), 2000);
+        }), 1000);
       });
     }
   }

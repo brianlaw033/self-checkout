@@ -24,7 +24,7 @@ h1{
 }
 
 .blackFont{
-  color: black;
+  color: #282828;
 }
 
 .btn{
@@ -38,7 +38,7 @@ h1{
 }
 
 .redirect{
-  color: black;
+  color: #282828;
 }
 
 .marginBottom20{
@@ -67,7 +67,7 @@ h1{
   background-color: transparent;
   border: transparent;
   opacity: 0.6;
-  color: rgba(0,0,0,0.6);
+  color: rgba(0,0,0,0.6) !important;
 }
 
 .logout:hover{
@@ -79,7 +79,7 @@ h1{
   background-color: transparent;
   border: transparent;
   opacity: 0.6;
-  color: rgba(0,0,0,0.6);
+  color: rgba(0,0,0,0.6)!important;
 }
 
 .logout-store:hover{
@@ -140,13 +140,23 @@ h1{
 
 
 .findProduct{
-  padding: 20px 0px 0px 50px;
+  padding: 20px 0px 20px 0px;
 }
 
 .findProductBtn{
-  width: 60%;
+  width: 55%;
   height: 50px;
 }
+
+//Payment
+.creditCard {
+  padding-bottom: 15px;
+  
+  h3{
+    padding-bottom: 15px;
+  }
+}
+
 //Store Index
 .store-index-hbs {
   display: flex;
