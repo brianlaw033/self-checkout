@@ -8,7 +8,6 @@ export default Ember.Component.extend({
   actions:{
     getBarcode(params){
         var tempNum = this.get('barcode');
-        debugger;
         this.set('barcode', "");
         this.get('findProduct').getProduct(tempNum, params);
         // this.get('priceComparison').getProduct(tempNum, params);

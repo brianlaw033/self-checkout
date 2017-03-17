@@ -67,9 +67,22 @@ h1{
   background-color: transparent;
   border: transparent;
   opacity: 0.6;
+  color: rgba(0,0,0,0.6);
 }
 
 .logout:hover{
+  opacity: 1;
+}
+
+.logout-store{
+  padding: 15px;
+  background-color: transparent;
+  border: transparent;
+  opacity: 0.6;
+  color: rgba(0,0,0,0.6);
+}
+
+.logout-store:hover{
   opacity: 1;
 }
 
@@ -78,22 +91,30 @@ h1{
   border-radius: 10px;
   width: 500px;
   padding: 20px;
-  text-align: center;
-  margin-top: 20%;
-  margin-left: auto;
-  margin-right: auto;
+  margin-top: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   input {
     margin: 2px auto;
     height: 35px;
     width: 250px;
     color: black;
+    font-size: 20px;
+  }
+
+  button{
+    width: 200px;
+    margin-top: 0.5px;
   }
 }
 
 .select-user-type {
   margin: 3px;
   width: 120px;
+  color: black;
+  font-size: 14px;
 }
 
 // select-shop
@@ -117,6 +138,7 @@ h1{
   color: #282828;
 }
 
+
 .findProduct{
   padding: 20px 0px 0px 50px;
 }
@@ -124,6 +146,14 @@ h1{
 .findProductBtn{
   width: 60%;
   height: 50px;
+
+//Store Index
+.store-index-hbs {
+  display: flex;
+}
+
+.store_image {
+  width:150px;
 }
 
 
