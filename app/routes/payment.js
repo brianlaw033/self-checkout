@@ -19,7 +19,6 @@ export default Ember.Route.extend({
     },
     addsoldItems(soldItems, currentUser){
       var currentUser = currentUser;
-      console.log(currentUser);
       var selfThis = this;
       var self = this.store;
       soldItems.forEach(function(element){
