@@ -60,7 +60,7 @@ export default Ember.Service.extend({
     });
   },
 
-  addShop(shopname, location, photo){
+  addShop(shopname, location, photo, logo){
     var self = this;
     return this.get('store').query('user',{
       orderBy: 'username',
@@ -72,6 +72,7 @@ export default Ember.Service.extend({
         promotion: null,
         description: null,
         photo: photo,
+        logo: logo,
         location: location,
         user: user
       }

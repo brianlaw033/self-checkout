@@ -21,7 +21,8 @@
         <h3>Enter the detail of your store:</h3>
         {{input value=shopname id='shopname' placeholder='Store Name'}}<br />
         {{input value=location id='location' placeholder='Store Location'}}<br />
-        {{input value=photo id='photo' placeholder='Upload a photo for your shop'}}<br />
+        {{input value=photo id='photo' placeholder='Upload a photo of your shop'}}<br />
+        {{input value=logo id='logo' placeholder='Upload the logo of your store'}}<br />
         <button class='btn' {{action 'submitShop'}}>Next</button>
       </form>
     {{/if}}
