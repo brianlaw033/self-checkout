@@ -76,7 +76,7 @@ export default Ember.Service.extend({
     var customer = user.get('customer');
     var card = customer.get('card');
     var cardId = Cookies.get('cardId');
-    if(cardId != undefined){
+    if(cardId != 'undefined'){
       this.set('hasCreditCard', true)
     }
     else {
