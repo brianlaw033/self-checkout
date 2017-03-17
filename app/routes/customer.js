@@ -28,15 +28,4 @@ export default Ember.Route.extend({
       }
     });
   },
-
-  actions: {
-      update(customer, params) {
-      Object.keys(params).forEach(function(key) {
-        if(params[key]!==undefined) {
-          customer.set(key,params[key]);
-        }
-        customer.get('_internalModel').save();
-      });
-    }
-  }
 });

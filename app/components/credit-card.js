@@ -25,8 +25,8 @@ export default Ember.Component.extend({
     addsoldItems(shoppingCart_Items){
       debugger;
       var login = this.get('login');
-      this.get('shoppingCart').clearCart();
       this.sendAction('addsoldItems',shoppingCart_Items, login.person);
+      this.get('shoppingCart').clearCart();
     }
   }
 });
