@@ -27,5 +27,6 @@ export default Ember.Route.extend({
         matching.push(soldItem);
       }
     });
+    matching.reverse();
   },
 });

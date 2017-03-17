@@ -3,9 +3,11 @@ import FindQuery from 'ember-emberfire-find-query/mixins/find-query';
 
 export default Ember.Service.extend(FindQuery, {
   store: Ember.inject.service(),
+  googleMap: Ember.inject.service(),
   tempProducts: [],
 
   getProduct(tempNum, params){
+    debugger;
     var barcode = parseInt(tempNum);
     var shop = params.shop_id;
     var self = this;
