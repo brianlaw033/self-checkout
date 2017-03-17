@@ -33,7 +33,13 @@ export default Ember.Service.extend({
   },
 
   clearCart(){
+    var itemsArray = this.get('items');
+    debugger;
+    itemsArray.forEach(function (item){
+       item.set('quantity_selected',0);
+    });
     this.set('items', []);
     this.set('totalprice',0);
+    this.set('canpay',false);
   }
 });
