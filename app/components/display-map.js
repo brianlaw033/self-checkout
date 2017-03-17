@@ -7,11 +7,20 @@ export default Ember.Component.extend({
   init: function () {
     this._super();
     Ember.run.schedule("afterRender",this,function() {
+      var fifty_meter_shops = this.get('map').fifty_meter_shops;
+      this.set('fifty_meter_shops', []);
+      var kilo_meter_shops = this.get('map').kilo_meter_shops;
+      this.set('kilo_meter_shops', []);
+
       this.send("showMap");
     });
   },
   actions: {
     showMap: function () {
+      var map = this.get('map');
+      map.set('fifty_meter_shops', []);
+      map.set('kilo_meter_shops', []);
+
       //creating a new map
       var self = this;
       var container = this.$('#the-map')[0];
@@ -22,11 +31,13 @@ export default Ember.Component.extend({
       };
       this.get('map').initMap(container, options);
       var requiredMap = this.get('map').initMap(container, options);
+
       // this.set('requiredMap', this.get('map').initMap(container, options));
       // var requiredMap = this.get('requiredMap');
       this.get('map').storeMapInService(requiredMap);
       var param = {map: requiredMap};
       var infoWindow = this.get('map').infoWindow(param);
+
       //locating our user
       // Try HTML5 geolocation.
       if (navigator.geolocation) {
@@ -105,7 +116,12 @@ export default Ember.Component.extend({
                               'Error: Your browser doesn\'t support geolocation.');
       };
     },
+
     geocodeAddress() {
+      var map = this.get('map');
+      map.set('fifty_meter_shops', []);
+      map.set('kilo_meter_shops', []);
+
       var self = this;
       var geocoder = this.get('map').geocodeAddress();
       var address = this.get('address');
@@ -170,6 +186,10 @@ export default Ember.Component.extend({
       });
     },
     myLocation() {
+      var map = this.get('map');
+      map.set('fifty_meter_shops', []);
+      map.set('kilo_meter_shops', []);
+      
       var self = this;
       // var requiredMap = this.get('requiredMap');
       // var requiredMap = this.get('map').requiredMap;

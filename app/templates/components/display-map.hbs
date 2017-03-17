@@ -6,19 +6,19 @@
         {{#link-to 'customer-index' fifty_meter_shop.id}}<button class="btn btn-primary storeSelect">{{fifty_meter_shop.shopname}}</button>{{/link-to}}
       {{/each}}
     </div>
-    <!-- <div class="walkShop">
+    <div class="walkShop">
       <h4>Stores within 1 km</h4>
       {{#each map.kilo_meter_shops as |kilo_meter_shop|}}
         {{#link-to 'customer-index' kilo_meter_shop.id}}<button class="btn btn-primary storeSelect">{{kilo_meter_shop.shopname}}</button>{{/link-to}}
       {{/each}}
-    </div> -->
+    </div>
   </div>
 
   <div id="floating-panel" class='col-sm-6'>
     <form class='blackFont'{{action "geocodeAddress" on="submit"}}>
       {{input value=address type="text" placeholder="(option)location"}}
-      <button  class="btn btn-primary">Find</button>
-      <button {{action 'myLocation'}} class="btn btn-primary glyphicon glyphicon-screenshot"></button>
+      <button  class="btn btn-primary">Check Somewhere Else</button>
+      <button {{action 'myLocation'}} class="btn btn-primary glyphicon glyphicon-screenshot"> Relocate</button>
     </form>
     <div id="the-map" class='blackFont'></div>
   </div>
