@@ -67,9 +67,22 @@ h1{
   background-color: transparent;
   border: transparent;
   opacity: 0.6;
+  color: rgba(0,0,0,0.6);
 }
 
 .logout:hover{
+  opacity: 1;
+}
+
+.logout-store{
+  padding: 15px;
+  background-color: transparent;
+  border: transparent;
+  opacity: 0.6;
+  color: rgba(0,0,0,0.6);
+}
+
+.logout-store:hover{
   opacity: 1;
 }
 
@@ -126,6 +139,10 @@ h1{
 }
 
 //Store Index
+.store-index-hbs {
+  display: flex;
+}
+
 .store_image {
   width:150px;
 }
