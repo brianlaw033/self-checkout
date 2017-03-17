@@ -13,6 +13,7 @@ export default Ember.Service.extend({
    currentUser: null,
    userId: null,
    userObj: null,
+   cardId: null,
    hasCreditCard: false,
 
   checkType(username, password){
@@ -40,6 +41,9 @@ export default Ember.Service.extend({
              }else if (temp.get('type') === 'customer'){
                 self.set('currentUser', temp.get('username'));
                 self.set('userId', temp.get('id'));
+                var customer = temp.get('customer');
+                var creditCard = customer.get('card');
+                Cookies.set('cardId', creditCard.get('id'));
                 Cookies.set('userId', temp.get('id'));
                 Cookies.set('type', temp.get('type'));
                 Cookies.set('currentUser', temp.get('username'));
@@ -59,9 +63,11 @@ export default Ember.Service.extend({
     Cookies.remove('userId');
     Cookies.remove('type');
     Cookies.remove('currentUser');
+    Cookies.remove('cardId');
     this.set('seller', false);
     this.set('customer', false);
     this.set('logedin', false);
+    this.set('hasCreditCard', false);
     this.get("routing").transitionTo("index");
   },
 
@@ -69,8 +75,7 @@ export default Ember.Service.extend({
     var user = this.get('person');
     var customer = user.get('customer');
     var card = customer.get('card');
-    var cardId = card.get('id');
-    console.log(cardId);
+    var cardId = Cookies.get('cardId');
     if(cardId != undefined){
       this.set('hasCreditCard', true)
     }
@@ -99,6 +104,11 @@ export default Ember.Service.extend({
             self.get("routing").transitionTo("store-index", [userId]);
           }
         }else if (type === 'customer'){
+          if(Cookies.get('cardID') != undefined){
+            self.set('hasCreditCard', true)
+          }else{
+            self.set('hasCreditCard', false)
+          }
           self.set('customer', true);
           if(self.get('routing').router.currentPath == 'index'){
             self.get("routing").transitionTo("select-shop");
