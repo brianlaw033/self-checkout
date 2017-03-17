@@ -30,7 +30,7 @@ h1{
 .btn{
   color: white;
   background-color: #173568;
-  margin: 0px 5px 0px 5px;
+  margin: 5px 5px 5px 5px;
 }
 
 .btn:hover{
@@ -192,6 +192,12 @@ h1{
 }
 
 //Store Index
+.logo{
+  margin: 0;
+  float: left;
+  width: 20%;
+}
+
 .store_image {
   width:150px;
 }
