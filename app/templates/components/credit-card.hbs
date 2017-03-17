@@ -1,7 +1,8 @@
+<div class='thumbnail text-center container blackFont creditCard'>
 {{#if login.customer}}
   {{#unless login.hasCreditCard}}
       <div>
-        <h5>Please enter your card details</h5>
+        <h3>Please enter your card details</h3>
         <form>
 
           <div class="form-group">
@@ -28,3 +29,4 @@
     {{#link-to 'customer' login.userId }}Return to your profile page{{/link-to}}
   {{/unless}}
 {{/if}}
+</div>

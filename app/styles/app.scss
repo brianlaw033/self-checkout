@@ -16,33 +16,6 @@ body{
   background-size: cover;
 }
 
-// * {
-//   border: solid 10px black;
-// }
-
-#tile {
-  display: inline-block;
-  padding: 10px;
-  margin: 10px;
-}
-
-#img_tile {
-  background-color: white;
-    height: 240px;
-    width: 200px;
-}
-
-img {
-  max-width:100%;
-  max-height:100%;
-  margin: 10% 0 10% 0;
-}
-
-#prod_info {
-  width: 200px;
-  // font-family:
- }
-
 h1{
   font-size: 50px;
   font-weight: 200;
@@ -51,22 +24,22 @@ h1{
 }
 
 .blackFont{
-  color: black;
+  color: #282828;
 }
 
 .btn{
-  color: black;
-  background-color: white;
-  margin: 5px;
+  color: white;
+  background-color: #173568;
+  margin: 0px 5px 0px 5px;
 }
 
 .btn:hover{
   color: white;
-  opacity: 0.8;
+  opacity: 1;
 }
 
 .redirect{
-  color: black;
+  color: #282828;
 }
 
 .marginBottom20{
@@ -111,7 +84,7 @@ h1{
   background-color: transparent;
   border: transparent;
   opacity: 0.6;
-  color: rgba(0,0,0,0.6);
+  color: rgba(255,255,255,0.6);
 }
 
 .logout-store:hover{
@@ -172,13 +145,23 @@ h1{
 
 
 .findProduct{
-  padding: 20px 0px 0px 50px;
+  padding: 20px 0px 20px 0px;
 }
 
 .findProductBtn{
-  width: 60%;
+  width: 55%;
   height: 50px;
 }
+
+//Payment
+.creditCard {
+  padding-bottom: 15px;
+
+  h3{
+    padding-bottom: 15px;
+  }
+}
+
 //Store Index
 .store-index-hbs {
 
@@ -297,10 +280,33 @@ h1{
   width: auto;
 }
 
-// img {
-//   height: 240px;
-//   width: 200px;
-// }
+#tile {
+  display: inline-block;
+  padding: 10px;
+  margin: 10px;
+}
+
+#img_tile {
+  background-color: white;
+    height: 240px;
+    width: 200px;
+}
+
+img {
+  max-width:100%;
+  max-height:100%;
+  margin: 10% 0 10% 0;
+}
+
+#prod_info {
+  width: 200px;
+  color: black;
+  style: bold;
+  }
+
+#prod_btn {
+  display: inline-block;
+}
 
 .display-map {
   display: flex;

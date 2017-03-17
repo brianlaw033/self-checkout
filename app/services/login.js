@@ -42,8 +42,11 @@ export default Ember.Service.extend({
                 self.set('currentUser', temp.get('username'));
                 self.set('userId', temp.get('id'));
                 var customer = temp.get('customer');
+                console.log(customer.get('id'))
                 var creditCard = customer.get('card');
-                Cookies.set('cardId', creditCard.get('id'));
+                var ccId = creditCard.get('id');
+                console.log(ccId);
+                Cookies.set('cardId', ccId);
                 Cookies.set('userId', temp.get('id'));
                 Cookies.set('type', temp.get('type'));
                 Cookies.set('currentUser', temp.get('username'));

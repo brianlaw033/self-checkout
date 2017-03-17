@@ -37,10 +37,11 @@ export default Ember.Route.extend({
         newSale.set('month',curr_Month);
         newSale.set('day',curr_date);
         newSale.save();
+        Cookies.set('cardId', 'justAdded');
         alert('Payment Succesful!')
         Ember.run.later((function(){
           selfThis.transitionTo("select-shop");
-        }), 2000);
+        }), 1000);
       });
     }
   }
