@@ -77,7 +77,6 @@ export default Ember.Route.extend({
   },
 
   activate: function(){
-
     this.set('doneSalesArray', []);
     this.set('matching', []);
     this.set('datas', [['Date', "This Month's Revenue" ,"Last Month's Revenue"]]);
@@ -92,6 +91,7 @@ export default Ember.Route.extend({
         matching.push(soldItem);
       }
     });
+    matching.reverse();
     var data = this.get('datas');
     var currentDate1=new Date ();
     var currentDateTester= new Date((currentDate1.getYear()+1900)+", "+(currentDate1.getMonth()+1)+", "+(currentDate1.getDate()));
