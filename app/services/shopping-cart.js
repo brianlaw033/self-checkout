@@ -34,7 +34,6 @@ export default Ember.Service.extend({
 
   clearCart(){
     var itemsArray = this.get('items');
-    debugger;
     itemsArray.forEach(function (item){
        item.set('quantity_selected',0);
     });
