@@ -18,7 +18,7 @@
     <form class='blackFont'{{action "geocodeAddress" on="submit"}}>
       {{input value=address type="text" placeholder="(option)location"}}
       <button  class="btn btn-primary">Check Somewhere Else</button>
-      <button {{action 'myLocation'}} class="btn btn-primary glyphicon glyphicon-screenshot"> Relocate</button>
+      <button {{action 'myLocation'}} class="btn btn-primary"><span class=" glyphicon glyphicon-screenshot"></span> Relocate</button>
     </form>
     <div id="the-map" class='blackFont'></div>
   </div>

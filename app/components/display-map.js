@@ -15,6 +15,7 @@ export default Ember.Component.extend({
       this.send("showMap");
     });
   },
+
   actions: {
     showMap: function () {
       var map = this.get('map');
@@ -189,7 +190,7 @@ export default Ember.Component.extend({
       var map = this.get('map');
       map.set('fifty_meter_shops', []);
       map.set('kilo_meter_shops', []);
-      
+
       var self = this;
       // var requiredMap = this.get('requiredMap');
       // var requiredMap = this.get('map').requiredMap;
