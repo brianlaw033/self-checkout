@@ -138,6 +138,15 @@ h1{
   color: #282828;
 }
 
+
+.findProduct{
+  padding: 20px 0px 0px 50px;
+}
+
+.findProductBtn{
+  width: 60%;
+  height: 50px;
+}
 //Store Index
 .store-index-hbs {
   display: flex;
@@ -147,8 +156,9 @@ h1{
   width:150px;
 }
 
+
 .cart_tile{
-  border: 1px solid black;
+  text-align: center;
 }
 
 .cart_image{
@@ -156,8 +166,23 @@ h1{
   max-height: 200px;
 }
 
+.cart{
+  text-align: center;
+  display: fixed;
+  width:20%;
+}
+
+.cart h2{
+  margin-top: 0;
+}
+
+//Store Index
+.store_image {
+  width:150px;
+}
+
 .cproduct-display{
-  border: 1px solid black;
+  border : 1px solid black;
   text-align: center;
   padding:5px;
   border-radius: 2px;
@@ -174,24 +199,11 @@ h1{
   max-height: 200px;
 }
 
-.cart{
-  float:right;
-  text-align: center;
-  display: fixed;
-  width:20%;
-}
-
-.cart h2{
-  margin-top: 0;
-}
-
 .cart_image{
   max-height: 100px;
 }
 
-.cart_tile{
-  text-align: center;
-}
+
 
 .cdisplay{
   margin-top: 50px;

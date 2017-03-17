@@ -20,9 +20,10 @@ export default Ember.Component.extend({
         customer: customerId
       };
       this.sendAction('saveCard', params);
-      this.send('addsoldItems');
+      this.send('addsoldItems', this.get('shoppingCart').items);
     },
     addsoldItems(shoppingCart_Items){
+      debugger;
       var login = this.get('login');
       this.get('shoppingCart').clearCart();
       this.sendAction('addsoldItems',shoppingCart_Items, login.person);

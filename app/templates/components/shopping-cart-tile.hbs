@@ -1,17 +1,21 @@
-<div class="col-xs-12">
+<div class="col-xs-12 text-center">
   <div class="cart_tile">
-    <div class="row">
+    <div>
       <img class="cart_image" src={{item.image}} alt={{item.name}}>
     </div>
 
-      <div class="row">
+      <div>
         {{item.name}}
       </div>
-      <div class="row">
+      <div >
         HKD: {{item.price}}
       </div>
-      <button class="btn" {{action 'removeItem' item}}>-</button>
+      <button class="btn" {{action 'removeItem' item}}>
+        <i class="fa fa-minus" aria-hidden="true"></i>
+      </button>
       {{item.quantity_selected}}
-      <button class="btn" {{action 'addItem' item}}>+</button>
+      <button class="btn" {{action 'addItem' item}}>
+        <i class="fa fa-plus" aria-hidden="true"></i>
+      </button>
   </div>
 </div>
