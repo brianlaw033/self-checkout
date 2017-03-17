@@ -16,6 +16,10 @@ body{
   background-size: cover;
 }
 
+.inline{
+  display: inline-block;;
+}
+
 h1{
   font-size: 50px;
   font-weight: 200;
@@ -57,7 +61,7 @@ h1{
   padding-bottom: 20px;
 }
 
-#brand{
+#companyName{
   font-family: 'Monoton', cursive;
 }
 

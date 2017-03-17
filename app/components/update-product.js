@@ -19,5 +19,10 @@ export default Ember.Component.extend({
       this.set('productFormShow', false);
       this.sendAction('update', product, params);
     },
+    destroyProduct(product) {
+        if (confirm('Are you sure you want to delete this product record?')) {
+          return product.destroyRecord('product');
+      }
+    }
   }
 });

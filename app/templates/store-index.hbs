@@ -5,11 +5,9 @@
 
   <br><br>
 
-
-    {{#each model.shop.products as |product|}}
-        <div id="tile">{{product-tile product=product}}</div>
-    {{/each}}
-
+<div class="container">
+        {{product-tile product=model.shop.products}}
+</div>
 
   {{new-product shop=model.shop saveProduct="saveProduct"}}
 </div>

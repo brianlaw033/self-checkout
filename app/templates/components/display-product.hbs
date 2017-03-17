@@ -11,11 +11,11 @@
     {{#if findProduct.isShowingModal}}
       {{#modal-dialog close="toggleModal" targetAttachment="center" translucentOverlay=true}}
         <div class='text-center displayProduct'>
-          {{findProduct.display.name}}<br />
-          {{findProduct.display.brand}}<br />
-          <img class='display' src="{{findProduct.display.image}}"/><br />
-          ${{findProduct.display.price}}<br />
-          <button class='btn-success'{{action 'addToCart' findProduct.display}}>Add to Cart</button>
+          <h3>{{findProduct.display.name}}</h3><br />
+          <h4>{{findProduct.display.brand}}</h4>
+          <img class='display' src="{{findProduct.display.image}}"/><
+          <h4>${{findProduct.display.price}}</h4><br />
+          <button class='btn'{{action 'addToCart' findProduct.display}}>Add to Cart</button>
         </div>
         <div>
           {{#each priceComparison.tempProducts as |product|}}

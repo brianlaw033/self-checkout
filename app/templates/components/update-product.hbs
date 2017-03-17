@@ -1,41 +1,19 @@
 {{#if productFormShow}}
 <h4>Edit Product</h4>
-<div>
+<div class='text-center'>
   <form>
-
-    <div class="form-group">
-      <label for="barcode">Barcode no.:</label>
-      {{input value=barcode id="barcode" placeholder=product.barcode}}
-    </div>
-
-    <div class="form-group">
-      <label for="name">Product name:</label>
-      {{input value=name id="name" placeholder=product.name}}
-    </div>
-
-    <div class="form-group">
-      <label for="brand">Product brand:</label>
-      {{input value=brand id="brand" placeholder=product.brand}}
-    </div>
-
-    <div class="form-group">
-      <label for="description">Product description:</label>
-      {{input value=description id="description" placeholder=product.description}}
-    </div>
-
-    <div class="form-group">
-      <label for="price">Price:</label>
-      {{input value=price id="price" placeholder=product.price}}
-    </div>
-
-    <div class="form-group">
-      <label for="image">Imge URL:</label>
-      {{input value=image id="image" placeholder=product.image}}
-    </div>
-
+      {{input value=barcode id="barcode" placeholder=product.barcode}}<br />
+      {{input value=name id="name" placeholder=product.name}}<br />
+      {{input value=brand id="brand" placeholder=product.brand}}<br />
+      {{input value=description id="description" placeholder=product.description}}<br />
+      {{input value=price id="price" placeholder=product.price}}<br />
+      {{input value=image id="image" placeholder=product.image}}<br />
     <button {{action 'update' product}} class="btn">Save</button>
+    <button {{action 'destroyProduct' product}} class="btn inline"><i class="fa fa-times" aria-hidden="true"></i></button>
   </form>
 </div>
 {{else}}
-<button {{action 'productFormShow'}} class="btn">Update</button>
+<button {{action 'productFormShow'}} class="btn inline"><i class="fa fa-pencil" aria-hidden="true"></i>
+
+</button>
 {{/if}}
