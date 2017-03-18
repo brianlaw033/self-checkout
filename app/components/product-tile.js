@@ -4,16 +4,17 @@ export default Ember.Component.extend({
 login: Ember.inject.service(),
   productFormShow: false,
   actions: {
-    update(product, params) {
-      Object.keys(params).forEach(function(key) {
-        if(params[key]!==undefined) {
-          product.set(key,params[key]);
-        }
-        product.save();
-      });
-    },
+    // update(product, params) {
+    //   Object.keys(params).forEach(function(key) {
+    //     if(params[key]!==undefined) {
+    //       product.set(key,params[key]);
+    //     }
+    //     product.save();
+    //   });
+    // },
 
     destroyProduct(product) {
+      debugger;
         if (confirm('Are you sure you want to delete this product record?')) {
           return product.destroyRecord('product');
       }
@@ -26,14 +27,21 @@ login: Ember.inject.service(),
       }
     },
     update(product) {
+      var barcode = product.get('barcode');
+      var name = product.get('name');
+      var brand = product.get('brand');
+      var description = product.get('description');
+      var price = product.get('price');
+      var image = product.get('image');
       var params = {
-        barcode: this.get('controller.barcode'),
-        name: this.get('controller.name'),
-        brand: this.get('controller.brand'),
-        description: this.get('controller.description'),
-        price: this.get('controller.price'),
-        image: this.get('controller.image')
+        barcode: this.get('barcode'),
+        name: this.get('name'),
+        brand: this.get('brand'),
+        description: this.get('description'),
+        price: this.get('price'),
+        image: this.get('image')
       };
+      console.log(params.barcode)
       this.set('productFormShow', false);
       Object.keys(params).forEach(function(key) {
         if(params[key]!==undefined) {

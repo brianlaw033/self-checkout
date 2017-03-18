@@ -2,13 +2,9 @@
 <div class="container thumbnail blackFont">
   {{shop-info shop=model.shop}}
   {{update-shop shop=model.shop update="update"}}
-
-  <br><br>
-
 <div class="container">
-        {{product-tile product=model.shop.products}}
+  {{product-tile product=model.shop.products}}
 </div>
-
   {{new-product shop=model.shop saveProduct="saveProduct"}}
 </div>
 

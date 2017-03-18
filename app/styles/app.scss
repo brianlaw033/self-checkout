@@ -50,10 +50,6 @@ h1{
   padding-bottom: 20px;
 }
 
-.form-group {
-  color: black;
-}
-
 //Index Page
 
 #index{
@@ -171,8 +167,17 @@ h1{
 
 }
 
-.store_image {
-  width:150px;
+.shopProductDiv{
+  height: 220px;
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.shopProduct {
+  margin: 0px;
+  padding: 10px;
+  display: block;
 }
 
 
