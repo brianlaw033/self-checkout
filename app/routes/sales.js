@@ -18,9 +18,8 @@ export default Ember.Route.extend({
     var salesMade=sales;
     salesMade.forEach(function(sale){
       var rowArray = [];
-      var date = new Date(sale.get('year')+ ', '+sale.get('month')+', ' + sale.get('day'));
-      var dateTester= ((date.getYear()+1900)+", "+(date.getMonth()+1)+", "+date.getDate());
-      rowArray.push(dateTester);
+      var saleDate = moment(sale.get('year')+ ', '+sale.get('month')+', ' + sale.get('day')).format("YYYY-MM-DD");
+      rowArray.push(saleDate);
       var totalPrice = sale.get('quantity_selected')*sale.get('price');
       rowArray.push(totalPrice);
       var lastMonthSale = 0;
@@ -68,11 +67,6 @@ export default Ember.Route.extend({
     0: {
       format: 'currency'
     },
-    // 1: {
-    //   title:'Items',
-    //   format: '',
-    //   textStyle: {color: '#356bc4'}
-    // }
     }
   },
 
@@ -93,31 +87,25 @@ export default Ember.Route.extend({
     });
     matching.reverse();
     var data = this.get('datas');
-    var currentDate1=new Date ();
-    var currentDateTester= new Date((currentDate1.getYear()+1900)+", "+(currentDate1.getMonth()+1)+", "+(currentDate1.getDate()));
-    var currentDateTester1= new Date((currentDate1.getYear()+1900)+", "+(currentDate1.getMonth()+1)+", "+(currentDate1.getDate()+1));
-    var oneMonthAgoDateTester= new Date((currentDate1.getYear()+1900)+", "+(currentDate1.getMonth())+", "+currentDate1.getDate());
-    var currentDate=oneMonthAgoDateTester;
+    var currentDate1= moment().add(1,'m');
+    var oneMonthAgoDateTester= moment().subtract(1, 'month').format("YYYY-MM-DD");
+    var currentDate=moment(oneMonthAgoDateTester);
     var salesArrays1 = this.get('createArray');
     var salesArrays2 = salesArrays1(matching);
     debugger;
-    while (currentDate<currentDateTester1){
+    while (currentDate.isBefore(currentDate1)){
       var salesArrays = salesArrays2;
       var dateFilled = false;
-      console.log(salesArrays);
       salesArrays.forEach(function(sale){
-        var dateArray = sale[0].split(',');
-        var date = new Date (dateArray[0]+", "+dateArray[1]+", "+dateArray[2]);
-        var saleDateTester= ((date.getYear()+1900)+", "+(date.getMonth()+1)+", "+date.getDate());
-        var lastMonthDate= ((date.getYear()+1900)+", "+(date.getMonth())+", "+date.getDate());
-        var currentDate1=new Date (currentDate);
-        var currentDateTester= ((currentDate1.getYear()+1900)+", "+(currentDate1.getMonth()+1)+", "+currentDate1.getDate());
-        var lastMonthDateTester=((currentDate1.getYear()+1900)+", "+(currentDate1.getMonth())+", "+currentDate1.getDate());
+        var saleDate = moment(sale[0]).format("YYYY-MM-DD");
+        var lastMonthDate = moment(sale[0]).subtract(1,'month').format("YYYY-MM-DD");
+        var currentDate1=moment(currentDate).format("YYYY-MM-DD");
+        var lastMonthDateTester=moment(currentDate).subtract(1,'month').format("YYYY-MM-DD");
         var allfilled = false;
-        if(currentDateTester === saleDateTester){
+        if(currentDate1 === saleDate){
           dateFilled=dateFilled;
           var srow_arr = [];
-          srow_arr.push(date);
+          srow_arr.push(saleDate);
           var totalPrice = sale[1];
           srow_arr.push(totalPrice);
           salesArrays=salesArrays;
@@ -125,42 +113,32 @@ export default Ember.Route.extend({
           salesArrays.forEach(function(sales){
             allfilled=allfilled;
             var insideArray = srow_arr;
-            var dateArray2 = sales[0].split(',');
-            var date2 = new Date (dateArray2[0]+", "+dateArray2[1]+", "+dateArray2[2]);
-            var saleDateTester2= ((date2.getYear()+1900)+", "+(date2.getMonth()+1)+", "+date2.getDate());
-            if(lastMonthDateTester === saleDateTester2){
+            var dateArray2 = sales[0];
+            var saleDate2 = moment(sales[0]).format("YYYY-MM-DD");
+            if(lastMonthDateTester === saleDate2){
               allfilled=true;
               var lastMonthsSale = sales[1];
               insideArray.push(lastMonthsSale);
             }
           });
-
           if(allfilled == false){
             srow_arr.push(0);
           }
           data.push(srow_arr);
           dateFilled=true;
-
         }
       });
-
       if(dateFilled == false){
-
-        var newDate=new Date (currentDate);
+        var newDate= moment(currentDate).format("YYYY-MM-DD");
         var row_arr = [];
         row_arr.push( newDate );
         row_arr.push(0);
         var allfilled2 = false
         salesArrays.forEach(function(sale){
-
           row_arr=row_arr;
-          var dateArray = sale[0].split(',');
-          var date = new Date (dateArray[0]+", "+dateArray[1]+", "+dateArray[2]);
-          var saleDateTester= ((date.getYear()+1900)+", "+(date.getMonth()+1)+", "+date.getDate());
-          var currentDate1=new Date (currentDate);
-          var lastMonthDateTester= ((currentDate1.getYear()+1900)+", "+(currentDate1.getMonth())+", "+currentDate1.getDate());
-          if(lastMonthDateTester === saleDateTester){
-
+          var saleDate3 = moment(sale[0]).format("YYYY-MM-DD");
+          var monthBefore=moment(currentDate).subtract(1,'month').format("YYYY-MM-DD");
+          if(monthBefore === saleDate3){
             var lastMonthsSale = sale[1];
             row_arr.push(lastMonthsSale);
             allfilled2 = true;
@@ -169,20 +147,10 @@ export default Ember.Route.extend({
         if (allfilled2==false){
           row_arr.push(0);
         }
-      data.push(row_arr);
-      console.log(data);
+        data.push(row_arr);
       }
-
-      var newDate=new Date (currentDate);
-      var currentDate1 = newDate.setDate(newDate.getDate() + parseInt(1));
-      console.log(currentDate1);
-      var currentDate = new Date (currentDate1);
-      console.log(currentDate);
-
+      currentDate.add(1,'d').format("YYYY-MM-DD");
     }
-    debugger;
-    //
-    // this.set('show', true);
   },
 
 
