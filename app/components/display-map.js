@@ -7,11 +7,6 @@ export default Ember.Component.extend({
   init: function () {
     this._super();
     Ember.run.schedule("afterRender",this,function() {
-      var fifty_meter_shops = this.get('map').fifty_meter_shops;
-      this.set('fifty_meter_shops', []);
-      var kilo_meter_shops = this.get('map').kilo_meter_shops;
-      this.set('kilo_meter_shops', []);
-
       this.send("showMap");
     });
   },
@@ -30,8 +25,8 @@ export default Ember.Component.extend({
         center: defaultLocation,
         zoom: 15
       };
-      this.get('map').initMap(container, options);
-      var requiredMap = this.get('map').initMap(container, options);
+      var requiredMap = map.initMap(container, options);
+      map.set('requiredMap',requiredMap);
 
       // this.set('requiredMap', this.get('map').initMap(container, options));
       // var requiredMap = this.get('requiredMap');
