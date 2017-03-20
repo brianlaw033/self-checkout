@@ -80,60 +80,65 @@ export default Ember.Route.extend({
     var matching = this.get('matching');
     var shop = user.get('shop');
     var shopId = shop.get('id');
+    //fill up an array of this shops sold items for display on sales page and use for graph
     sales.forEach(function(soldItem){
       if (soldItem.get('shop').get('id')== shopId){
         matching.push(soldItem);
       }
     });
-    matching.reverse();
+    matching.reverse(); //show latest sale at the top
     var data = this.get('datas');
-    var currentDate1= moment().add(1,'m');
+    var currentDate1= moment();
+    debugger;
     var oneMonthAgoDateTester= moment().subtract(1, 'month').format("YYYY-MM-DD");
-    var currentDate=moment(oneMonthAgoDateTester);
+    var currentDate=moment(oneMonthAgoDateTester);//initialize the testing date to last months date
     var salesArrays1 = this.get('createArray');
     var salesArrays2 = salesArrays1(matching);
-    debugger;
     while (currentDate.isBefore(currentDate1)){
       var salesArrays = salesArrays2;
       var dateFilled = false;
+      //get each sales date
       salesArrays.forEach(function(sale){
         var saleDate = moment(sale[0]).format("YYYY-MM-DD");
-        var lastMonthDate = moment(sale[0]).subtract(1,'month').format("YYYY-MM-DD");
         var currentDate1=moment(currentDate).format("YYYY-MM-DD");
         var lastMonthDateTester=moment(currentDate).subtract(1,'month').format("YYYY-MM-DD");
         var allfilled = false;
+        //check if the sale date is equal to the current date being filled up. The "current date" is initialized to last months date.
         if(currentDate1 === saleDate){
           dateFilled=dateFilled;
           var srow_arr = [];
-          srow_arr.push(saleDate);
+          srow_arr.push(saleDate); //push the date as the first element of this array
           var totalPrice = sale[1];
-          srow_arr.push(totalPrice);
+          srow_arr.push(totalPrice); //push the total sales for that day as the 2nd element of this array
           salesArrays=salesArrays;
           allfilled=allfilled;
+          //for each sale check if it is equal to the date 1 month before the "current date". or initially 2 months before today
           salesArrays.forEach(function(sales){
             allfilled=allfilled;
             var insideArray = srow_arr;
-            var dateArray2 = sales[0];
             var saleDate2 = moment(sales[0]).format("YYYY-MM-DD");
+            //if it is, fill in the sales from 2 months ago
             if(lastMonthDateTester === saleDate2){
               allfilled=true;
-              var lastMonthsSale = sales[1];
+              var lastMonthsSale = sales[1]; //push last months sale as the 3rd element in this array
               insideArray.push(lastMonthsSale);
             }
           });
           if(allfilled == false){
-            srow_arr.push(0);
+            srow_arr.push(0);//push 0 sales if non of the sales objects corresponded to the current date being tested - 1. (2months ago from today initially)
           }
-          data.push(srow_arr);
+          data.push(srow_arr);//push this "inner array" to the main array
           dateFilled=true;
         }
       });
+      //if no sale was made on the current date being tested
       if(dateFilled == false){
         var newDate= moment(currentDate).format("YYYY-MM-DD");
         var row_arr = [];
-        row_arr.push( newDate );
-        row_arr.push(0);
+        row_arr.push( newDate );//push the current date being tested as the first element of this array
+        row_arr.push(0);// no sales as the second
         var allfilled2 = false
+        //check if any sales have been made 1 month prior to the current testing date
         salesArrays.forEach(function(sale){
           row_arr=row_arr;
           var saleDate3 = moment(sale[0]).format("YYYY-MM-DD");
@@ -144,12 +149,13 @@ export default Ember.Route.extend({
             allfilled2 = true;
           }
         });
+        //if not, push sales 0
         if (allfilled2==false){
           row_arr.push(0);
         }
         data.push(row_arr);
       }
-      currentDate.add(1,'d').format("YYYY-MM-DD");
+      currentDate.add(1,'d').format("YYYY-MM-DD");//increment current date being tested
     }
   },
 
